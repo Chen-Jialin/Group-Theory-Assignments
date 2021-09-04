@@ -1,0 +1,552 @@
+% !TEX program = pdflatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
+% Group Theory Assignment 06
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 06}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, April 15, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+\begin{prob}
+    The basis elements of the real Lie algebra $L=\text{so}(3)$ are given by
+    \[
+        a_1=\left(\begin{matrix}
+            0&0&0\\
+            0&0&1\\
+            0&-1&0
+        \end{matrix}\right),\quad a_2=\left(\begin{matrix}
+            0&0&-1\\
+            0&0&0\\
+            1&0&0
+        \end{matrix}\right),\quad a_3=\left(\begin{matrix}
+            0&1&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right).
+    \]
+    Show explicitly that these basis elements possess the following properties.
+    \begin{enumerate}
+        \item[(a)] The basis elements $a_1$, $a_2$, and $a_3$ obey the commutation relations
+        \begin{align*}
+            [a_1,a_2]=&a_1a_2-a_2a_1=-a_3,\\
+            [a_2,a_3]=&a_2a_3-a_3a_2=-a_1,\\
+            [a_3,a_1]=&a_3a_1-a_1a_3=-a_2.
+        \end{align*}
+        \item[(b)] The basis elements $a_1$, $a_2$, and $a_3$ are anti-Hermitian,
+        \[
+            a_1^{\dagger}=-a_1,\quad a_2^{\dagger}=-a_2,\quad a_3^{\dagger}=-a_3.
+        \]
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] The basis elements $a_1$, $a_2$, and $a_3$ obey the commutation relations:
+        \begin{align}
+            \nonumber[a_1,a_2]=&a_1a_2-a_2a_1=\left(\begin{matrix}
+                0&0&0\\
+                0&0&1\\
+                0&-1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&0&-1\\
+                0&0&0\\
+                1&0&0
+            \end{matrix}\right)-\left(\begin{matrix}
+                0&0&-1\\
+                0&0&0\\
+                1&0&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&0&0\\
+                0&0&1\\
+                0&-1&0
+            \end{matrix}\right)\\
+            =&\left(\begin{matrix}
+                0&0&0\\
+                1&0&0\\
+                0&0&0
+            \end{matrix}\right)-\left(\begin{matrix}
+                0&1&0\\
+                0&0&0\\
+                0&0&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&-1&0\\
+                1&0&0\\
+                0&0&0
+            \end{matrix}\right)=-a_3,\\
+            \nonumber[a_2,a_3]=&a_2a_3-a_3a_2=\left(\begin{matrix}
+                0&0&-1\\
+                0&0&0\\
+                1&0&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&1&0\\
+                -1&0&0\\
+                0&0&0
+            \end{matrix}\right)-\left(\begin{matrix}
+                0&1&0\\
+                -1&0&0\\
+                0&0&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&0&-1\\
+                0&0&0\\
+                1&0&0
+            \end{matrix}\right)\\
+            =&\left(\begin{matrix}
+                0&0&0\\
+                0&0&0\\
+                0&1&0
+            \end{matrix}\right)-\left(\begin{matrix}
+                0&0&0\\
+                0&0&1\\
+                0&0&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&0&0\\
+                0&0&-1\\
+                0&1&0
+            \end{matrix}\right)=-a_1,\\
+            \nonumber[a_3,a_1]=&a_3a_1-a_1a_3=\left(\begin{matrix}
+                0&1&0\\
+                -1&0&0\\
+                0&0&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&0&0\\
+                0&0&1\\
+                0&-1&0
+            \end{matrix}\right)-\left(\begin{matrix}
+                0&0&0\\
+                0&0&1\\
+                0&-1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&1&0\\
+                -1&0&0\\
+                0&0&0
+            \end{matrix}\right)\\
+            =&\left(\begin{matrix}
+                0&0&1\\
+                0&0&0\\
+                0&0&0
+            \end{matrix}\right)-\left(\begin{matrix}
+                0&0&0\\
+                0&0&0\\
+                1&0&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&0&1\\
+                0&0&0\\
+                -1&0&0
+            \end{matrix}\right)=-a_2.
+        \end{align}
+        \item[(b)] The basis elements $a_1$, $a_2$, and $a_3$ are anti-Hermitian:
+        \begin{align}
+            a_1^{\ddagger}=&\left(\begin{matrix}
+                0&0&0\\
+                0&0&-1\\
+                0&1&0
+            \end{matrix}\right)=-a_1,\\
+            a_2^{\ddagger}=&\left(\begin{matrix}
+                0&0&1\\
+                0&0&0\\
+                -1&0&0
+            \end{matrix}\right)=-a_2,\\
+            a_3^{\ddagger}=&\left(\begin{matrix}
+                0&-1&0\\
+                1&0&0\\
+                0&0&0
+            \end{matrix}\right)=-a_3.
+        \end{align}
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    The scalar transformation operators $Q(a_1)$, $Q(a_2)$, and $Q(a_3)$ for the real Lie algebra $\text{so}(3)$ are found to be given by
+    \[
+        Q(a_1)=y\frac{\partial}{\partial z}-z\frac{\partial}{\partial y},\quad Q(a_2)=z\frac{\partial}{\partial x}-x\frac{\partial}{\partial z},\quad Q(a_3)=x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}.
+    \]
+    Show that $[Q(a_1),Q(a_2)]=-Q(a_3)$, $[Q(a_2),Q(a_3)]=-Q(a_1)$, and $[Q(a_3),Q(a_1)]=-Q(a_2)$.
+\end{prob}
+\begin{sol}
+    Applying $[Q(a_1),Q(a_2)]$, $[Q(a_2),Q(a_3)]$, and $[Q(a_3),Q(a_1)]$ to an arbitrary function $f(\vec{r})$ of $\vec{r}$, we get
+    \begin{align}
+        \nonumber[Q(a_1),Q(a_2)]f(\vec{r})=&\left(y\frac{\partial}{\partial z}-z\frac{\partial}{\partial y}\right)\left(z\frac{\partial f}{\partial x}-x\frac{\partial f}{\partial z}\right)-\left(z\frac{\partial}{\partial x}-x\frac{\partial}{\partial z}\right)\left(y\frac{\partial f}{\partial z}-z\frac{\partial f}{\partial y}\right)\\
+        \nonumber=&y\frac{\partial f}{\partial x}+yz\frac{\partial^2f}{\partial z\partial x}-z^2\frac{\partial^2f}{\partial y\partial x}-yx\frac{\partial^2f}{\partial z^2}+zx\frac{\partial^2f}{\partial y\partial z}\\
+        \nonumber&-zy\frac{\partial^2f}{\partial x\partial z}+xy\frac{\partial^2f}{\partial z^2}+z^2\frac{\partial^2f}{\partial x\partial y}-x\frac{\partial f}{\partial y}-xz\frac{\partial^2f}{\partial z\partial y}\\
+        =&y\frac{\partial f}{\partial x}-x\frac{\partial f}{\partial y}=\left(y\frac{\partial}{\partial x}-x\frac{\partial}{\partial y}\right)f(\vec{r})=-Q(a_3)f(\vec{r}).\\
+        \nonumber[Q(a_2),Q(a_3)]f(\vec{r})=&\left(z\frac{\partial}{\partial x}-x\frac{\partial}{\partial z}\right)\left(x\frac{\partial f}{\partial y}-y\frac{\partial f}{\partial x}\right)-\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\right)\left(z\frac{\partial f}{\partial x}-x\frac{\partial f}{\partial z}\right)\\
+        \nonumber=&z\frac{\partial f}{\partial y}+zx\frac{\partial^2f}{\partial x\partial y}-x^2\frac{\partial^2f}{\partial z\partial y}-zy\frac{\partial^2f}{\partial x^2}+xy\frac{\partial^2f}{\partial z\partial x}\\
+        \nonumber&-xz\frac{\partial^2f}{\partial y\partial x}+yz\frac{\partial^2f}{\partial x^2}+x^2\frac{\partial^2f}{\partial y\partial z}-y\frac{\partial f}{\partial z}-yx\frac{\partial^2f}{\partial x\partial z}\\
+        =&z\frac{\partial f}{\partial y}-y\frac{\partial f}{\partial z}=\left(z\frac{\partial}{\partial y}-y\frac{\partial}{\partial z}\right)f(\vec{r})=-Q(a_1)f(\vec{r}),\\
+        \nonumber[Q(a_3),Q(a_1)]=&\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\right)\left(y\frac{\partial f}{\partial z}-z\frac{\partial f}{\partial y}\right)-\left(y\frac{\partial}{\partial z}-z\frac{\partial}{\partial y}\right)\left(x\frac{\partial f}{\partial y}-y\frac{\partial f}{\partial x}\right)\\
+        \nonumber=&x\frac{\partial f}{\partial z}+xy\frac{\partial^2f}{\partial y\partial z}-y^2\frac{\partial^2f}{\partial x\partial z}-xz\frac{\partial^2f}{\partial y^2}+yz\frac{\partial^2f}{\partial x\partial y}\\
+        \nonumber&-yx\frac{\partial^2f}{\partial z\partial y}+zx\frac{\partial^2f}{\partial y^2}+y^2\frac{\partial^2f}{\partial z\partial x}-z\frac{\partial f}{\partial x}-zy\frac{\partial^2f}{\partial y\partial x}\\
+        =&x\frac{\partial f}{\partial z}-z\frac{\partial f}{\partial x}=\left(x\frac{\partial}{\partial z}-z\frac{\partial}{\partial x}\right)f(\vec{r})=-Q(a_2)f(\vec{r}).
+    \end{align}
+    Due to the arbitrariness of $f(\vec{r})$, we have
+    \begin{align}
+        [Q(a_1),Q(a_2)]=&-Q(a_3),\\
+        [Q(a_2),Q(a_3)]=&-Q(a_1),\\
+        [Q(a_3),Q(a_1)]=&-Q(a_2).
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    The generators of the real Lie algebra $L=\text{su}(2)$ are given by
+    \[
+        a_1=\frac{1}{2}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right),\quad a_2=\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right),\quad a_3=\frac{1}{2}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right).
+    \]
+    Show explicitly that $a_1$, $a_2$, and $a_3$ obey the commutation relations
+    \begin{align*}
+        [a_1,a_2]=&a_1a_2-a_2a_1=-a_3,\\
+        [a_2,a_3]=&a_2a_3-a_3a_2=-a_1,\\
+        [a_3,a_1]=&a_3a_1-a_1a_3=-a_2.
+    \end{align*}
+\end{prob}
+\begin{sol}
+    $a_1$, $a_2$, and $a_3$ obey the commutation relations:
+    \begin{align}
+        \nonumber[a_1,a_2]=&a_1a_2-a_2a_1=\frac{1}{4}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{4}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)=\frac{1}{4}\left(\begin{matrix}
+            -i&0\\
+            0&i
+        \end{matrix}\right)-\frac{1}{4}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)\\
+        =&\frac{1}{2}\left(\begin{matrix}
+            -i&0\\
+            0&i
+        \end{matrix}\right)=-a_3,\\
+        \nonumber[a_2,a_3]=&a_2a_3-a_3a_2=\frac{1}{4}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)-\frac{1}{4}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=\frac{1}{4}\left(\begin{matrix}
+            0&-i\\
+            -i&0
+        \end{matrix}\right)-\frac{1}{4}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)\\
+        =&\frac{1}{2}\left(\begin{matrix}
+            0&-i\\
+            -i&0
+        \end{matrix}\right)=-a_1,\\
+        \nonumber[a_3,a_1]=&a_3a_1-a_1a_3=\frac{1}{4}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)-\frac{1}{4}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)=\frac{1}{4}\left(\begin{matrix}
+            0&-1\\
+            1&0
+        \end{matrix}\right)-\frac{1}{4}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\\
+        =&\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            1&0
+        \end{matrix}\right)=-a_2.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    The generators of the real Lie algebra $L=\text{su}(2)$ in the above problem can expressed in terms of the following Pauli matrices
+    \[
+        \sigma_1=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right),\quad\sigma_2=\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right),\quad\sigma_3=\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right).
+    \]
+    Show that the Pauli matrices possess the following properties.
+    \begin{enumerate}
+        \item[(a)] $\sigma_1^2=\sigma_2^2=\sigma_3^2$.
+        \item[(b)] $\sigma_1\sigma_2=-\sigma_2\sigma_1=i\sigma_3$, $\sigma_2\sigma_3=-\sigma_3\sigma_2=i\sigma_1$, $\sigma_3\sigma_1=-\sigma_1\sigma_3=i\sigma_2$.
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] Since
+        \begin{align}
+            \sigma_1^2=&\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),\\
+            \sigma_2^2=&\left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)\\
+            \sigma_3^2=&\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right)\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),
+        \end{align}
+        we have
+        \begin{equation}
+            \sigma_1^2=\sigma_2^2=\sigma_3^2=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right).
+        \end{equation}
+        \item[(b)] Since
+        \begin{align}
+            \sigma_1\sigma_2=&\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                i&0\\
+                0&-i
+            \end{matrix}\right)=i\sigma_3,\\
+            -\sigma_2\sigma_1=&-\left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right)\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)=-\left(\begin{matrix}
+                -i&0\\
+                0&i
+            \end{matrix}\right)=i\sigma_3,
+        \end{align}
+        we have
+        \begin{equation}
+            \sigma_1\sigma_2=-\sigma_2\sigma_1=i\sigma_3.
+        \end{equation}
+        Since
+        \begin{align}
+            \sigma_2\sigma_3=&\left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right)\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&i\\
+                i&0
+            \end{matrix}\right)=i\sigma_1,\\
+            -\sigma_3\sigma_2=&-\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right)\left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right)=-\left(\begin{matrix}
+                0&-i\\
+                -i&0
+            \end{matrix}\right)=i\sigma_1,
+        \end{align}
+        we have
+        \begin{equation}
+            \sigma_2\sigma_3=-\sigma_3\sigma_2=i\sigma_1.
+        \end{equation}
+        Since
+        \begin{align}
+            \sigma_3\sigma_1=\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right)\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&1\\
+                -1&0
+            \end{matrix}\right)=i\sigma_2,\\
+            -\sigma_1\sigma_3=-\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right)=-\left(\begin{matrix}
+                0&-1\\
+                1&0
+            \end{matrix}\right)=i\sigma_2,
+        \end{align}
+        we have
+        \begin{equation}
+            \sigma_3\sigma_1=-\sigma_1\sigma_3=i\sigma_2.
+        \end{equation}
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    Let $\vec{n}=(n_1,n_2,n_3)$ be a unit vector specifying a direction in three dimensional space.
+    \begin{enumerate}
+        \item[(a)] Evaluate $(\vec{\sigma}\cdot\vec{n})^2$ with $\vec{\sigma}=(\sigma_1,\sigma_2,\sigma_3)$.
+        \item[(b)] Evaluate $e^{i(\vec{\sigma}\cdot\vec{n})\omega/2}$.
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)]
+        \begin{align}
+            \nonumber(\vec{\sigma}\cdot\vec{n})^2=&(n_1\sigma_1+n_2\sigma_2+n_3\sigma_3)^2\\
+            \nonumber=&n_1^2\sigma_1^2+n_2^2\sigma_2^2+n_3^2\sigma_3^2+n_1n_2(\sigma_1\sigma_2+\sigma_2\sigma_1)+n_2n_3(\sigma_2\sigma_3+\sigma_3\sigma_2)+n_3n_1(\sigma_3\sigma_1+\sigma_1\sigma_3)\\
+            \nonumber=&(n_1^2+n_2^2+n_3^2)\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)+n_1n_2\times 0+n_2n_3\times 0+n_3n_1\times 0\\
+            =&\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right).
+        \end{align}
+        \item[(b)] From
+        \begin{equation}
+            (\vec{\sigma}\cdot\vec{n})^2=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),
+        \end{equation}
+        we know that
+        \begin{equation}
+            (\vec{\sigma}\cdot\vec{n})^j=\left\{\begin{array}{ll}
+                \vec{\sigma}\cdot\vec{n}=\left(\begin{matrix}
+                    n_3&n_1-in_2\\
+                    n_1+in_2&-n_3
+                \end{matrix}\right),&j\text{ is odd},\\
+                \left(\begin{matrix}
+                    1&0\\
+                    0&1
+                \end{matrix}\right),&j\text{ is even}.
+            \end{array}\right.
+        \end{equation}
+        Then
+        \begin{align}
+            \nonumber e^{i(\vec{\sigma}\cdot\vec{n})\omega/2}=&1+\sum_{j=1}^{\infty}\frac{[i(\vec{\sigma}\cdot\vec{n})\omega/2]^j}{j!}\\
+            \nonumber=&1+\sum_{j=0}^{\infty}\frac{i^{2j+1}(\vec{\sigma}\cdot\vec{n})^{2j+1}(\omega/2)^{2j+1}}{(2j+1)!}+\sum_{j=1}^{\infty}\frac{i^{2j}(\vec{\sigma}\cdot\vec{n})^{2j}(\omega/2)^{2j}}{(2j)!}\\
+            \nonumber=&1+(\vec{\sigma}\cdot\vec{n})\sum_{j=0}^{\infty}\frac{i(-1)^j(\omega/2)^{2j+1}}{(2j+1)!}+\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)\sum_{j=1}^{\infty}\frac{(-1)^j(\omega/2)^{2j}}{(2j)!}\\
+            \nonumber=&1+i\left(\begin{matrix}
+                n_3&n_1-in_2\\
+                n_1+in_2&-n_3
+            \end{matrix}\right)\sin(\omega/2)+\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)[\cos(\omega/2)-1]\\
+            =&\left(\begin{matrix}
+                \cos(\omega/2)+in_3\sin(\omega/2)&(n_2+in_1)\sin(\omega/2)\\
+                (-n_2+in_1)\sin(\omega/2)&\cos(\omega/2)-in_3\sin(\omega/2)
+            \end{matrix}\right).
+        \end{align}
+    \end{enumerate}
+\end{sol}
+\end{document}

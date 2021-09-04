@@ -1,0 +1,424 @@
+% !TEX program = pdflatex
+% Group Theory Assignment 13
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 13}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, June 17, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+\begin{prob}
+    The basis of the real algebra $L=\text{sl}(2,\mathbb{R})$ is given by
+    \[
+        b_1=\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right),\quad b_2=\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right),\quad b_3=\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right).
+    \]
+    Find the representation matrices of the basis elements $b_1$, $b_2$ and $b_3$ in the adjoint representation.
+\end{prob}
+\begin{sol}
+    Since
+    \begin{align}
+        [b_1,b_1]=&\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)=0=0\cdot b_1+0\cdot b_2+0\cdot b_3,\\
+        [b_1,b_2]=&\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)=0\cdot b_1+0\cdot b_2+1\cdot b_3,\\
+        [b_1,b_3]=&\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=0\cdot b_1+1\cdot b_2+0\cdot b_3,
+    \end{align}
+    the representation matrix of the basis element $b_1$ is
+    \begin{align}
+        \text{ad}(b_1)=\left(\begin{matrix}
+            0&0&0\\
+            0&0&1\\
+            0&1&0
+        \end{matrix}\right).
+    \end{align}
+    Since
+    \begin{align}
+        [b_2,b_1]=&\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=-\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)=0\cdot b_1+0\cdot b_2-1\cdot b_3,\\
+        [b_2,b_2]=&\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=0=0\cdot b_1+0\cdot b_2+0\cdot b_3,\\
+        [b_2,b_3]=&\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+            -1&0\\
+            0&-1
+        \end{matrix}\right)=1\cdot b_1+0\cdot b_2+0\cdot b_3,
+    \end{align}
+    the representation matrix of the basis element $b_2$ is
+    \begin{align}
+        \text{ad}(b_2)=\left(\begin{matrix}
+            0&0&1\\
+            0&0&0\\
+            -1&0&0
+        \end{matrix}\right).
+    \end{align}
+    Since
+    \begin{align}
+        [b_3,b_1]=&\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)=-\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=0\cdot b_1-1\cdot b_2+0\cdot b_3,\\
+        [b_3,b_2]=&\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)=-\frac{1}{2}\left(\begin{matrix}
+            -1&0\\
+            0&-1
+        \end{matrix}\right)=-1\cdot b_1+0\cdot b_2+0\cdot b_3,\\
+        [b_3,b_3]=&\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)=0=0\cdot b_1+0\cdot b_2+0\cdot b_3,
+    \end{align}
+    the representation matrix of basis element $b_3$ is
+    \begin{align}
+        \text{ad}(b_3)=\left(\begin{matrix}
+            0&-1&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right).
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Continue from the previous problem. Find the Killing form $B(b_p,b_q)$ for $p,q=1,2,3$.
+\end{prob}
+\begin{sol}
+    \begin{align}
+        B(b_1,b_1)=&\text{tr}[\text{ad}(b_1)\text{ad}(b_1)]=\text{tr}\left(\begin{matrix}
+            0&0&0\\
+            0&1&0\\
+            0&0&1
+        \end{matrix}\right)=2,\\
+        B(b_2,b_2)=&\text{tr}[\text{ad}(b_2)\text{ad}(b_2)]=\text{tr}\left(\begin{matrix}
+            -1&0&0\\
+            0&0&0\\
+            0&0&-1
+        \end{matrix}\right)=-2,\\
+        B(b_3,b_3)=&\text{tr}[\text{ad}(b_3)\text{ad}(b_3)]=\text{tr}\left(\begin{matrix}
+            1&0&0\\
+            0&1&0\\
+            0&0&0
+        \end{matrix}\right)=2,\\
+        B(b_1,b_2)=B(b_2,b_1)=&\text{tr}[\text{ad}(b_1)\text{ad}(b_2)]=\text{tr}\left(\begin{matrix}
+            0&0&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right)=0,\\
+        B(b_2,b_3)=B(b_3,b_2)=&\text{tr}[\text{ad}(b_2)\text{ad}(b_3)]=\text{tr}\left(\begin{matrix}
+            0&0&0\\
+            0&0&0\\
+            0&1&0
+        \end{matrix}\right)=0,\\
+        B(b_3,b_1)=B(b_1,b_3)=&\text{tr}[\text{ad}(b_3)\text{ad}(b_1)]=\text{tr}\left(\begin{matrix}
+            0&0&-1\\
+            0&0&0\\
+            0&0&0
+        \end{matrix}\right)=0.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Choose the basis of the semi-simple complex Lie algebra $\tilde{L}$ such that each basis elements is a member of some subspace $\tilde{L}_{\gamma}$. The adjoint representation matrix $\text{ad}(h)$ of each element $h$ in Cartan subalgebra $H$ is a diagonal matrix with zero diagonal elements corresponding to the basis elements of $\tilde{L}_0=H$ and with diagonal element $\gamma(h)$ corresponding to each basis element of $\tilde{L}_{\gamma}$ (for $\gamma\in\Delta$). Show that
+    \[
+        B(h,h')=\sum_{\gamma\in\Delta}(\text{dim}\tilde{L}_{\gamma})\gamma(h)\gamma(h')\text{ for all }h,h'\in H.
+    \]
+\end{prob}
+\begin{sol}
+    \begin{align}
+        \nonumber B(h,h')=&\text{tr}[\text{ad}(h),\text{ad}(h)']=\sum_{jk}[\text{ad}(h)]_{jk}[\text{ad}(h')]_{kj}\\
+        \nonumber=&\sum_{jk}[\text{ad}(h)]_{jj}\delta_{jk}[\text{ad}(h')]_{kk'}\delta_{kj}=\sum_j[\text{ad}(h)]_{jj}[\text{ad}(h')]_{jj}\\
+        =&\sum_i(\text{dim}\tilde{L}_{\gamma i})\gamma_i(h)\gamma_i(h')=\sum_{\gamma\in\Delta}(\text{dim}\tilde{L}_{\gamma})\gamma(h)\gamma(h').
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Consider the complexification $\tilde{L}$ of $L=\text{su}(2)$. The basis elements are given by
+    \[
+        a_1=\frac{1}{2}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right),\quad a_2=\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right),\quad a_3=\frac{1}{2}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right).
+    \]
+    The basis of the Cartan subalgebra $H$ is given by $h_1=a_3$. Verify that the two non-zero roots are $\alpha_1$ and $-\alpha_1$ with $\alpha_1(h_1)=i$.
+\end{prob}
+\begin{sol}
+    Express the basis of $\tilde{L}$ as
+    \begin{align}
+        a_{\alpha}'=\mu a_1+\nu a_2.
+    \end{align}
+    Since
+    \begin{align}
+        [h_1,a_1]=[a_3,a_1]=&a_3a_1-a_1a_3=\frac{1}{2}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            i&0\\
+            0&i
+        \end{matrix}\right)=-\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)=-a_2,\\
+        [h_1,a_2]=[a_3,a_2]=&a_3a_2-a_2a_3=\frac{1}{2}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)-\frac{1}{2}\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)=a_1,
+    \end{align}
+    we have
+    \begin{align}
+        [h_1,a_{\alpha}']=-\mu a_2+\nu a_1.
+    \end{align}
+    According to the definition of none-zero root
+    \begin{align}
+        [h_1,a_{\alpha}']=\alpha(h_1)a_{\alpha}'
+    \end{align}
+    we have
+    \begin{align}
+        [h_1,a_{\alpha}']=-\mu\alpha(h_1)a_1+\nu\alpha(h_1)a_2.
+    \end{align}
+    Due to the linear independence of $a_1$ and $a_2$, we have
+    \begin{align}
+        \mu+\nu\alpha(h_1)=&0,\\
+        \mu\alpha(h_1)-\nu=&0.
+    \end{align}
+    Condition for non-trivial solution of $\mu$ and $\nu$ requires
+    \begin{align}
+        \det\left\lvert\begin{matrix}
+            1&\alpha(h_1)\\
+            \alpha(h_1)&-1
+        \end{matrix}\right\rvert=0\Longrightarrow\alpha(h_1)=\pm i.
+    \end{align}
+    Therefore, the two non-zero roots are $\alpha_1$ and $-\alpha_1$ with $\alpha_1(h_1)=i$.
+\end{sol}
+
+\begin{prob}
+    Continue from the previous problem. Find the values of $B(h_1,h_1)$ and $\langle\alpha_1,\alpha_1\rangle$.
+\end{prob}
+\begin{sol}
+    \begin{align}
+        B(h_1,h_1)=\text{tr}[\text{ad}(h_1)\text{ad}(h_1)]=\text{tr}\left[\left(\begin{matrix}
+            0&1&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right)\right]=-2.
+    \end{align}
+    Continue from the previous problem,
+    \begin{align}
+        \mu+\nu\alpha(h_1)=&0,\\
+        \mu\alpha(h_1)-\nu=&0.
+    \end{align}
+    For $\alpha(h_1)=i$, $\nu=i\mu$. Choose $\mu=1$, we have $\nu=i$, and thus $a_{\alpha}=a_1+ia_2$.\\
+    For $\alpha(h_1)=-i$, $\nu=-i\mu$. Choose $\mu=1$, we have $\nu=-i$, and thus $a_{-\alpha_1}=a_1-ia_2$.\\
+    Suppose $h_{\alpha_1}=\kappa h_1$, then
+    \begin{gather}
+        B(h_{\alpha_1},h_{\alpha_2})=\alpha_1(h_{\alpha_1})\\
+        \Longrightarrow -2\kappa^2=i\kappa\Longrightarrow\kappa=-\frac{1}{2}i,\\
+        \Longleftarrow h_{\alpha_1}=-\frac{1}{2}ih_1=-\frac{1}{2}ia_3=\frac{1}{4}\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right).
+    \end{gather}
+    \begin{align}
+        \langle\alpha_1,\alpha_1\rangle=B(h_{\alpha_1},h_{\alpha_1})=-\frac{1}{4}B(h_1,h_1)=-\frac{1}{4}\times(-2)=\frac{1}{2}.
+    \end{align}
+\end{sol}
+\end{document}

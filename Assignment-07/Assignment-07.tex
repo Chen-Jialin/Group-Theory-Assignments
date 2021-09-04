@@ -1,0 +1,665 @@
+% !TEX program = pdflatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
+% Group Theory Assignment 07
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 07}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, April 22, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+Consider a particle of mass $\mu$ confined to a square in two dimensions whose vertices are located at $(z,x)=(1,1)$, $(1,-1)$, $(-1,-1)$, and $(-1,1)$ on the $zOx$ plane. The potential is zero within the square and infinite on the edge of the square. The eigenfunctions $\psi_{mn}(z,x)$ of the Hamiltonian of the particle are of the form
+\[
+    \psi_{mn}(z,x)\propto\left\{\begin{array}{ll}
+        \cos(k_mz)\cos(k_nx),&\text{if both $m$ and $n$ are odd},\\
+        \cos(k_mz)\sin(k_nx),&\text{if $m$ is odd but $n$ is even},\\
+        \sin(k_mz)\cos(k_nx),&\text{if $m$ is even but $n$ is odd},\\
+        \sin(k_mz)\sin(k_nx),&\text{if both $m$ and $n$ are even},
+    \end{array}\right.
+\]
+where $k_m=m\pi/2$, $k_n=n\pi/2$, and $m$ and $n$ are positive integers. The corresponding eigenvalues are given by
+\[
+    E_{mn}=\frac{\pi^2\hbar^2}{8\mu}(m^2+n^2).
+\]
+The symmetry group of the Hamiltonian $H_0$ is $D_4$ whose character table is given by
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|ccccc}
+     & $C_1=\{E\}$ & $C_2=\{C_{2x},C_{2z}\}$ & $C_3=\{C_{2y}\}$ & $C_4=\{C_{4y},C_{4y}^{-1}\}$ & $C_5=\{C_{2c},C_{2d}\}$ \\ \hline
+    $\Gamma^1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+    $\Gamma^2$ & $1$ & $1$ & $1$ & $-1$ & $-1$ \\
+    $\Gamma^3$ & $1$ & $-1$ & $1$ & $1$ & $-1$ \\
+    $\Gamma^4$ & $1$ & $-1$ & $1$ & $-1$ & $1$ \\
+    $\Gamma^5$ & $2$ & $0$ & $-2$ & $0$ & $0$
+    \end{tabular}
+\end{table}
+\begin{prob}
+    For which irreducible representations do the eigenfunctions $\psi_{11}(z,x)$ and $\psi_{22}(z,x)$ form bases respectively?
+\end{prob}
+\begin{sol}
+    Suppose the dimension of irreducible representation $\Gamma^p$ is $d_p$. Since the order of $D_4$ is $8$, we have
+    \begin{gather}
+        d_1^2+d_2^2+d_3^2+d_4^2+d_5^2=8,\\
+        \Longrightarrow d_1=d_2=d_3=d_4=1,\quad d_5=2.
+    \end{gather}
+    $\Gamma_1$, $\Gamma_2$, $\Gamma_3$, and $\Gamma_4$ are $1$-dimensional representations and $\Gamma_5$ is $2$-dimensional representation.\\
+    For $1$-dimensional representations $\Gamma_1$, $\Gamma_2$, $\Gamma_3$, and $\Gamma_4$ of $D_4$, the basis functions transform for every coordinate transformation $T$ of $D_4$ according to
+    \begin{align}
+        Q(T)\psi(\vec{r})=\Gamma(T)_{11}\psi(\vec{r})=\chi(T)\psi.
+    \end{align}
+    We first calculate $Q(T)\psi_{11}(z,x)$ and $Q(T)\psi_{22}(z,x)$ for every coordinate transformation $T$ of $D_4$. We already know the transformation matrices of $D_4$ in two dimensions are
+    \begin{align*}
+        R(E)=&\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right),&R(C_{2x})=&\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right),&R(C_{2y})=&\left(\begin{matrix}
+            -1&0\\
+            0&-1
+        \end{matrix}\right),&R(C_{2z})=&\left(\begin{matrix}
+            -1&0\\
+            0&1
+        \end{matrix}\right),\\
+        R(C_{4y})=&\left(\begin{matrix}
+            0&-1\\
+            1&0
+        \end{matrix}\right),&R(C_{4y}^{-1})=&\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right),&R(C_{2c})=&\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right),&R(C_{2d})=&\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right).
+    \end{align*}
+    Since
+    \begin{align}
+        R(T)^{-1}=R(T)^T
+    \end{align}
+    for every $T\in G$, we have
+    \begin{align}
+        Q(T)\psi(\vec{r})=\psi(R(T)^{-1}\vec{r})=\psi(R(T)^T\vec{r}).
+    \end{align}
+    Since
+    \begin{align}
+        R(E)^T\vec{r}=&\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right),\\
+        R(C_{2x})^T\vec{r}=&\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            z\\
+            -x
+        \end{matrix}\right),\\
+        R(C_{2y})^T\vec{r}=&\left(\begin{matrix}
+            -1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            -z\\
+            -x
+        \end{matrix}\right),\\
+        R(C_{2z})^T\vec{r}=&\left(\begin{matrix}
+            -1&0\\
+            0&1
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            -z\\
+            x
+        \end{matrix}\right),\\
+        R(C_{4y})^T\vec{r}=&\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            x\\
+            -z
+        \end{matrix}\right),\\
+        R(C_{4y}^{-1})^T\vec{r}=&\left(\begin{matrix}
+            0&-1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            -x\\
+            z
+        \end{matrix}\right),\\
+        R(C_{2c})^T\vec{r}=&\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            x\\
+            z
+        \end{matrix}\right),\\
+        R(C_{2d})^T\vec{r}=&\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            z\\
+            x
+        \end{matrix}\right)=\left(\begin{matrix}
+            -x\\
+            -z
+        \end{matrix}\right),
+    \end{align}
+    for $\psi_{11}(z,x)$, we have
+    \begin{align}
+        \nonumber&Q(E)\psi_{11}(z,x)=R(C_{2x})\psi_{11}(z,x)=R(C_{2y})\psi_{11}(z,x)=R(C_{2z})\psi_{11}(z,x)\\
+        =&Q(C_{4y})\psi_{11}(z,x)=Q(C_{4y}^{-1})\psi_{11}(z,x)=Q(C_{2c})\psi_{11}(z,x)=Q(C_{2d})\psi_{11}(z,x)=\psi_{11}(z,x)=\sin(k_1z)\sin(k_2x)=\psi_{11}(z,x),
+    \end{align}
+    \begin{align}
+        \Longrightarrow\chi(C_1)=\chi(C_2)=\chi(C_3)=\chi(C_4)=\chi(C_5)=1.
+    \end{align}
+    and for $\psi_{22}(z,x)$, we have
+    \begin{align}
+        Q(E)\psi_{22}(z,x)=Q(C_{2y})\psi_{22}(z,x)=Q(C_{2c})\psi_{22}(z,x)=Q(C_{2d})\psi_{22}(z,x)=&\sin(k_1z)\sin(k_1x)=\psi_{22}(z,x),\\
+        Q(C_{2x})\psi_{22}(z,x)=Q(C_{2z})\psi_{22}(z,x)=Q(C_{4y})\psi_{22}(z,x)=Q(C_{4y}^{-1})\psi_{22}(z,x)=&-\sin(k_1z)\sin(k_1x)=-\psi_{22}(z,x).
+    \end{align}
+    \begin{align}
+        \Longrightarrow\chi(C_1)=\chi(C_3)=\chi(C_5)=1,\quad\chi(C_2)=\chi(C_4)=-1.
+    \end{align}
+    Therefore, the eigenfunction $\psi_{11}(z,x)$ forms the basis of $\Gamma_1$ and the eigenfunction $\psi_{22}(z,x)$ forms the basis of $\Gamma_4$.
+\end{sol}
+
+\begin{prob}
+    Find the matrices representing all the elements of $D_4$ in the space spanned by the degenerate eigenfunctions $\psi_{12}(z,x)$ and $\psi_{21}(z,x)$. And then calculate the characters for all the classes of $D_4$ in this representation. For which irreducible representation do $\psi_{12}(z,x)$ and $\psi_{21}(z,x)$ form a basis?
+\end{prob}
+\begin{sol}
+    Since
+    \begin{align}
+        Q(E)\psi_{12}(z,x)=&\cos(k_1z)\sin(k_2x)=\psi_{12}(z,x)=\Gamma(E)_{11}\psi_{12}(z,x)+\Gamma(E)_{21}\psi_{21}(z,x),\\
+        Q(E)\psi_{21}(z,x)=&\sin(k_2z)\cos(k_1x)=\psi_{21}(z,x)=\Gamma(E)_{12}\psi_{12}(z,x)+\Gamma(E)_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(E)_{11}=1,\quad\Gamma(E)_{21}=0,\quad\Gamma(E)_{12}=0,\quad\Gamma(E)_{22}=1,\\
+        \Longrightarrow\Gamma(E)=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2x})\psi_{12}(z,x)=&-\cos(k_1z)\sin(k_2x)=-\psi_{12}(z,x)=\Gamma(C_{2x})_{11}\psi_{12}(z,x)+\Gamma(C_{2x})_{21}\psi_{21}(z,x),\\
+        Q(C_{2x})\psi_{21}(z,x)=&\sin(k_2z)\cos(k_1x)=\psi_{21}(z,x)=\Gamma(C_{2x})_{12}\psi_{12}(z,x)+\Gamma(C_{2x})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2x})_{11}=-1,\quad\Gamma(C_{2x})_{21}=0,\quad\Gamma(C_{2x})_{12}=0,\quad\Gamma(C_{2x})_{22}=1,\\
+        \Longrightarrow\Gamma(C_{2x})=\left(\begin{matrix}
+            -1&0\\
+            0&1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2y})\psi_{12}(z,x)=&-\cos(k_1z)\sin(k_2x)=-\psi_{12}(z,x)=\Gamma(C_{2y})_{11}\psi_{12}(z,x)+\Gamma(C_{2y})_{21}\psi_{21}(z,x),\\
+        Q(C_{2y})\psi_{21}(z,x)=&-\sin(k_2z)\cos(k_1x)=-\psi_{21}(z,x)=\Gamma(C_{2z})_{12}\psi_{12}(z,x)+\Gamma(C_{2y})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2y})_{11}=-1,\quad\Gamma(C_{2y})_{21}=0,\quad\Gamma(C_{2y})_{12}=0,\quad\Gamma(C_{2y})_{22}=-1,\\
+        \Longrightarrow\Gamma(C_{2y})=\left(\begin{matrix}
+            -1&0\\
+            0&-1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2z})\psi_{12}(z,x)=&\cos(k_1z)\sin(k_2x)=\psi_{12}(z,x)=\Gamma(C_{2z})_{11}\psi_{12}(z,x)+\Gamma(C_{2z})_{21}\psi_{21}(z,x),\\
+        Q(C_{2z})\psi_{21}(z,x)=&-\sin(k_2z)\cos(k_1x)=-\psi_{21}(z,x)=\Gamma(C_{2z})_{12}\psi_{12}(z,x)+\Gamma(C_{2z})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2z})_{11}=1,\quad\Gamma(C_{2z})_{21}=0,\quad\Gamma(C_{2z})_{12}=0,\quad\Gamma(C_{2z})_{22}=-1,\\
+        \Longrightarrow\Gamma(C_{2z})=\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{4y})\psi_{12}(z,x)=&-\cos(k_1x)\sin(k_2z)=-\psi_{21}(z,x)=\Gamma(C_{4y})_{11}\psi_{12}(z,x)+\Gamma(C_{4y})_{21}\psi_{21}(z,x),\\
+        Q(C_{4y})\psi_{21}(z,x)=&\sin(k_2x)\cos(k_1z)=\psi_{12}(z,x)=\Gamma(C_{4y})_{12}\psi_{12}(z,x)+\Gamma(C_{4y})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{4y})_{11}=0,\quad\Gamma(C_{4y})_{21}=-1,\quad\Gamma(C_{4y})_{12}=1,\quad\Gamma(C_{4y})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{4y})=\left(\begin{matrix}
+            0&1\\
+            -1&0
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{4y}^{-1})\psi_{12}(z,x)=&\cos(k_1x)\sin(k_2z)=\psi_{21}(z,x)=\Gamma(C_{4y}^{-1})_{11}\psi_{12}(z,x)+\Gamma(C_{4y}^{-1})_{21}\psi_{21}(z,x),\\
+        Q(C_{4y}^{-1})\psi_{21}(z,x)=&-\sin(k_2x)\cos(k_1z)=-\psi_{12}(z,x)=\Gamma(C_{4y}^{-1})_{12}\psi_{12}(z,x)+\Gamma(C_{4y}^{-1})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{4y}^{-1})_{11}=0,\quad\Gamma(C_{4y}^{-1})_{21}=1,\quad\Gamma(C_{4y}^{-1})_{12}=-1,\quad\Gamma(C_{4y}^{-1})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{4y}^{-1})=\left(\begin{matrix}
+            0&-1\\
+            1&0
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2c})\psi_{12}(z,x)=&\cos(k_1x)\sin(k_2z)=\psi_{21}(z,x)=\Gamma(C_{2c})_{11}\psi_{12}(z,x)+\Gamma(C_{2c})_{21}\psi_{21}(z,x),\\
+        Q(C_{2c})\psi_{21}(z,x)=&\sin(k_2x)\cos(k_1z)=\psi_{12}(z,x)=\Gamma(C_{2c})_{12}\psi_{12}(z,x)+\Gamma(C_{2c})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2c})_{11}=0,\quad\Gamma(C_{2c})_{21}=1,\quad\Gamma(C_{2c})_{12}=1,\Gamma(C_{2c})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{2c})=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2d})\psi_{12}(z,x)=&-\cos(k_1x)\sin(k_2z)=-\psi_{21}(z,x)=\Gamma(C_{2d})_{11}\psi_{12}(z,x)+\Gamma(C_{2d})_{21}\psi_{21}(z,x),\\
+        Q(C_{2d})\psi_{21}(z,x)=&-\sin(k_2x)\cos(k_1z)=-\psi_{12}(z,x)=\Gamma(C_{2d})_{12}\psi_{12}(z,x)+\Gamma(C_{2d})_{22}\psi_{21}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2d})_{11}=0,\quad\Gamma(C_{2d})_{21}=-1,\quad\Gamma(C_{2d})_{12}=-1,\quad\Gamma(C_{2d})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{2d})=\left(\begin{matrix}
+            0&-1\\
+            -1&0
+        \end{matrix}\right).
+    \end{gather}
+    The characters for all the classes of $D_4$ in this representation are
+    \begin{align}
+        \chi(C_1)=2,\quad\chi(C_2)=\chi(C_4)=\chi(C_5)=0,\quad\chi(C_3)=-2.
+    \end{align}
+    Therefore, $\psi_{12}(z,x)$ and $\psi_{21}(z,x)$ form a basis of $\Gamma_5$.
+\end{sol}
+
+\begin{prob}
+    What is the degeneracy corresponding to $(m=6,n=7)$ and $(m=2,n=9)$? Is this degeneracy normal or accidental?
+\end{prob}
+\begin{sol}
+    Similar to last problem, both $(m=6,n=7)$ and $(m=2,n=9)$ form the basis of the representation $\Gamma^5$ respectively, so their corresponding representation is irreducible, $\Gamma=\Gamma^5\oplus\Gamma^5$. Therefore, the corresponding degeneracy is accidental.
+\end{sol}
+
+\begin{prob}
+    Find the matrices representing all the elements of $D_4$ in the space spanned by the degenerate eigenfunctions $\psi_{mn}(z,x)$ and $\psi_{nm}(z,x)$. Here both $m$ and $n$ are odd integers but they are not equal. And then calculate the characters for all the classes of $D_4$ in this representation. Is this representation reducible or irreducible? If this representation is reducible, write it as a direct sum of irreducible representations.
+\end{prob}
+\begin{sol}
+    Since
+    \begin{align}
+        Q(E)\psi_{mn}(z,x)=&\cos(k_mz)\cos(k_nx)=\psi_{mn}(z,x)=\Gamma(E)_{11}\psi_{mn}(z,x)+\Gamma(E)_{21}\psi_{nm}(z,x),\\
+        Q(E)\psi_{nm}(z,x)=&\cos(k_nz)\cos(k_mx)=\psi_{nm}(z,x)=\Gamma(E)_{12}\psi_{mn}(z,x)+\Gamma(E)_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(E)_{11}=1,\quad\Gamma(E)_{21}=0,\quad\Gamma(E)_{12}=0,\quad\Gamma(E)_{22}=1,\\
+        \Longrightarrow\Gamma(E)=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2x})\psi_{mn}(z,x)=&\cos(k_mz)\cos(k_nx)=\psi_{mn}(z,x)=\Gamma(C_{2x})_{11}\psi_{mn}(z,x)+\Gamma(C_{2x})_{21}\psi_{nm}(z,x),\\
+        Q(C_{2y})\psi_{nm}(z,x)=&\cos(k_nz)\cos(k_mx)=\psi_{nm}(z,x)=\Gamma(C_{2x})_{12}\psi_{mn}(z,x)+\Gamma(C_{2x})_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2x})_{11}=1,\quad\Gamma(C_{2x})_{21}=0,\quad\Gamma(C_{2x})_{12}=0,\quad\Gamma(C_{2x})_{22}=1,\\
+        \Longrightarrow\Gamma(C_{2x})=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2y})\psi_{mn}(z,x)=&\cos(k_mz)\cos(k_nx)=\psi_{mn}(z,x)=\Gamma(C_{2y})_{11}\psi_{mn}(z,x)+\Gamma(C_{2y})_{21}\psi_{nm}(z,x),\\
+        Q(C_{2y})\psi_{nm}(z,x)=&\cos(k_nz)\cos(k_mx)=\psi_{nm}(z,x)=\Gamma(C_{2y})_{12}\psi_{mn}(z,x)+\Gamma(C_{2y})_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2y})_{11}=1,\quad\Gamma(C_{2y})_{21}=0,\quad\Gamma(C_{2y})_{12}=0,\quad\Gamma_{22}(C_{2y})=1,\\
+        \Longrightarrow\Gamma(C_{2y})=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2z})\psi_{mn}(z,x)=&\cos(k_mz)\cos(k_nx)=\psi_{mn}(z,x)=\Gamma(C_{2z})_{11}\psi_{mn}(z,x)+\Gamma(C_{2z})_{21}\psi_{nm}(z,x),\\
+        Q(C_{2z})\psi_{nm}(z,x)=&\cos(k_nz)\cos(k_mx)=\psi_{nm}(z,x)=\Gamma(C_{2z})_{12}\psi_{mn}(z,x)+\Gamma(C_{2z})_{12}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2z})_{11}=1,\quad\Gamma(C_{2z})_{21}=0,\quad\Gamma(C_{2z})_{12}=0,\quad\Gamma(C_{2z})_{22}=1,\\
+        \Longrightarrow\Gamma(C_{2z})=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{4y})\psi_{mn}(z,x)=&\cos(k_mx)\cos(k_nz)=\psi_{nm}(z,x)=\Gamma(C_{4y})_{11}\psi_{mn}(z,x)+\Gamma(C_{4y})_{21}\psi_{nm}(z,x),\\
+        Q(C_{4y})\psi_{nm}(z,x)=&\cos(k_nx)\cos(k_mz)=\psi_{mn}(z,x)=\Gamma(C_{4y})_{12}\psi_{mn}(z,x)+\Gamma(C_{4y})_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{4y})_{11}=0,\quad\Gamma(C_{4y})_{21}=1,\quad\Gamma(C_{4y})_{12}=1,\quad\Gamma(C_{4y})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{4y})=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{4y}^{-1})\psi_{mn}(z,x)=&\cos(k_mx)\cos(k_nz)=\psi_{nm}(z,x)=\Gamma(C_{4y}^{-1})_{11}\psi_{mn}(z,x)+\Gamma(C_{4y}^{-1})_{21}\psi_{nm}(z,x),\\
+        Q(C_{4y}^{-1})\psi_{nm}(z,x)=&\cos(k_nx)\cos(k_mz)=\psi_{mn}(z,x)=\Gamma(C_{4y}^{-1})_{12}\psi_{mn}(z,x)+\Gamma(C_{4y}^{-1})_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{4y}^{-1})_{11}=-1,\quad\Gamma(C_{4y}^{-1})_{21}=1,\quad\Gamma(C_{4y}^{-1})_{12}=1,\quad\Gamma(C_{4y}^{-1})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{4y}^{-1})=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2c})\psi_{mn}(z,x)=&\cos(k_mx)\cos(k_nz)=\psi_{nm}(z,x)=\Gamma(C_{2c})_{11}\psi_{mn}(z,x)+\Gamma(C_{2c})_{21}\psi_{nm}(z,x),\\
+        Q(C_{2c})\psi_{nm}(z,x)=&\cos(k_nx)\cos(k_mz)=\psi_{mn}(z,x)=\Gamma(C_{2c})_{12}\psi_{mn}(z,x)+\Gamma(C_{2c})_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2c})_{11}=0,\quad\Gamma(C_{2c})_{21}=1,\quad\Gamma(C_{2c})_{12}=1,\quad\Gamma(C_{2c})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{2c})=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right).
+    \end{gather}
+    Since
+    \begin{align}
+        Q(C_{2c})\psi_{mn}(z,x)=&\cos(k_mx)\cos(k_nz)=\psi_{nm}(z,x)=\Gamma(C_{2d})_{11}\psi_{mn}(z,x)+\Gamma(C_{2d})_{21}\psi_{nm}(z,x),\\
+        Q(C_{2c})\psi_{nm}(z,x)=&\cos(k_nx)\cos(k_mz)=\psi_{mn}(z,x)=\Gamma(C_{2d})_{12}\psi_{mn}(z,x)+\Gamma(C_{2d})_{22}\psi_{nm}(z,x),
+    \end{align}
+    we have
+    \begin{gather}
+        \Gamma(C_{2d})_{11}=0,\quad\Gamma(C_{2d})_{21}=1,\quad\Gamma(C_{2d})_{12}=1,\quad\Gamma(C_{2d})_{22}=0,\\
+        \Longrightarrow\Gamma(C_{2d})=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right).
+    \end{gather}
+    The characters for all the classes of $D_4$ in this representation is
+    \begin{align}
+        \chi(C_1)=\chi(C_2)=\chi(C_3)=2,\quad\chi(C_4)=\chi(C_5)=0.
+    \end{align}
+    This representation is similar to such a representation
+    \begin{align}
+        \Gamma'=S^{-1}\Gamma S=\frac{\sqrt{2}}{2}\left(\begin{matrix}
+            1&1\\
+            1&-1
+        \end{matrix}\right)\Gamma\frac{\sqrt{2}}{2}\left(\begin{matrix}
+            1&1\\
+            1&-1
+        \end{matrix}\right)
+    \end{align}
+    that
+    \begin{align}
+        \Gamma'(E)=\Gamma'(C_{2x})=\Gamma'(C_{2y})=\Gamma'(C_{2z})=&\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right),\\
+        \Gamma'(C_{4y})=\Gamma'(C_{4y}^{-1})=\Gamma'(C_{2c})=\Gamma'(C_{2d})=&\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right).
+    \end{align}
+    Therefore, this representation is reducible:
+    \begin{align}
+        \Gamma\cong\Gamma_1\oplus\Gamma_2.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Consider the case in which the particle is subject to an interaction given by $Ax$ with $A$ a constant.
+    \begin{enumerate}
+        \item[(a)] For which irreducible representation of $D_4$ is $x$ an irreducible tensor operator?
+        \item[(b)] Consider the transitions caused by the interaction. If the particle is initially in the state $\psi_{mn}(z,x)$ or $\psi_{nm}(z,x)$ with $m$ and $n$ respectively even and odd integers, through reducing the direct product of irreducible representations find the irreducible representations which the allowed final state transform as.
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] Let $Q(T)xQ(T)^{-1}$ operate on an arbitrary wavefunction $f(z,x)$, we have
+        \begin{align}
+            Q(T)xQ(T^{-1})f(z,x)=Q(T)\{x[Q(T)^{-1}\psi(z,x)]\}=[Q(T)x][Q(X)Q(X)^{-1}\psi(z,x)]=[Q(T)x]\psi(z,x).
+        \end{align}
+        Due to the arbitrariness of the wavefunction $\psi(z,x)$, we have
+        \begin{align}
+            Q(T)xQ(T)^{-1}=Q(T)x.
+        \end{align}
+        Now that $x$ is an irreducible tensor operator, let $z$ also be in the set of irreducible operators. To make $x$ an irreducible tensor operator, we need
+        \begin{align}
+            Q(T)x=&\Gamma^q(T)_{12}z+\Gamma^q(T)_{22}x,\\
+            Q(T)z=&\Gamma^q(T)_{11}z+\Gamma^q(T)_{21}x.
+        \end{align}
+        for every $T\in D_4$.\\
+        For $T=E$, we need
+        \begin{align}
+            Q(E)x=&x=\Gamma^q(E)_{12}z+\Gamma^q(E)_{22}x,\\
+            Q(E)z=&z=\Gamma^q(E)_{11}z+\Gamma^q(E)_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(E)_{12}=0,\quad\Gamma^q(E)_{22}=1,\quad\Gamma^q(E)_{11}=1,\quad\Gamma^q(E)_{11}=0,\\
+            \Longrightarrow\Gamma^q(E)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{2x}$, we need
+        \begin{align}
+            Q(C_{2x})x=&-x=\Gamma^q(C_{2x})_{12}z+\Gamma^q(C_{2x})_{22}x,\\
+            Q(C_{2x})z=&z=\Gamma^q(C_{2x})_{11}z+\Gamma^q(C_{2x})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{2x})_{12}=0,\quad\Gamma^q(C_{2z})_{22}=-1,\quad\Gamma^q(C_{2x})_{11}=1,\quad\Gamma^q(C_{2x})_{21}=0\\
+            \Longrightarrow\Gamma^q(C_{2x})=\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{2y}$, we need
+        \begin{align}
+            Q(C_{2y})x=&-x=\Gamma^q(C_{2y})_{12}z+\Gamma^q(C_{2y})_{22}x,\\
+            Q(C_{2y})z=&-z=\Gamma^q(C_{2y})_{11}z+\Gamma^q(C_{2y})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{2y})_{12}=0,\quad\Gamma^q(C_{2y})_{22}=-1,\quad\Gamma^q(C_{2y})_{11}=-1,\quad\Gamma^q(C_{2y})_{21}=0,\\
+            \Longrightarrow\Gamma^q(C_{2y})=\left(\begin{matrix}
+                -1&0\\
+                0&-1
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{2z}$, we need
+        \begin{align}
+            Q(C_{2z})x=&x=\Gamma^q(C_{2z})_{12}z+\Gamma^q(C_{2z})_{22}x,\\
+            Q(C_{2z})z=&-z=\Gamma^q(C_{2z})_{11}z+\Gamma^q(C_{2z})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{2z})_{12}=0,\quad\Gamma^q(C_{2z})_{22}=1,\quad\Gamma^q(C_{2z})_{11}=-1,\quad\Gamma^q(C_{2z})_{12}=0,\\
+            \Longrightarrow\Gamma^q(C_{2z})=\left(\begin{matrix}
+                -1&0\\
+                0&1
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{4y}$, we need
+        \begin{align}
+            Q(C_{4y})x=&-z=\Gamma^q(C_{4y})_{12}z+\Gamma^q(C_{4y})_{22}x,\\
+            Q(C_{4y})z=&x=\Gamma^q(C_{4y})_{11}z+\Gamma^q(C_{4y})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{4y})_{12}=-1,\quad\Gamma^q(C_{4y})_{22}=0,\quad\Gamma^q(C_{4y})_{11}=0,\quad\Gamma^q(C_{4y})_{21}=1,\\
+            \Longrightarrow\Gamma^q(C_{4y})=\left(\begin{matrix}
+                0&-1\\
+                1&0
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{4y}^{-1}$, we need
+        \begin{align}
+            Q(C_{4y}^{-1})=&z=\Gamma^q(C_{4y}^{-1})_{12}z+\Gamma^q(C_{4y}^{-1})_{22}x,\\
+            Q(C_{4y}^{-1})=&-x=\Gamma^q(C_{4y}^{-1})_{11}z+\Gamma^q(C_{4y}^{-1})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{4y})_{12}=1,\quad\Gamma^q(C_{4y})_{22}=0,\quad\Gamma^q(C_{4y}^{-1})_{11}=0,\quad\Gamma^q(C_{4y}^{-1})_{21}=-1,\\
+            \Longrightarrow\Gamma^q(C_{4y}^{-1})=\left(\begin{matrix}
+                0&1\\
+                -1&0
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{2c}$, we need
+        \begin{align}
+            Q(C_{2c})x=z=\Gamma^q(C_{2c})_{12}z+\Gamma^q(C_{2c})_{22}x,\\
+            Q(C_{2c})x=x=\Gamma^q(C_{2c})_{11}z+\Gamma^q(C_{2c})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{2c})_{12}=1,\quad\Gamma^q(C_{2c})_{22}=0,\quad\Gamma^q(C_{2c})_{11}=0,\quad\Gamma^q(C_{2c})_{21}=1,\\
+            \Longrightarrow\Gamma^q(C_{2c})=\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right).
+        \end{gather}
+        For $T=C_{2d}$, we need
+        \begin{align}
+            Q(C_{2d})x=&-z=\Gamma^q(C_{2c})_{12}z+\Gamma^q(C_{2d})_{22}x,\\
+            Q(C_{2d})z=&-x=\Gamma^q(C_{2c})_{11}z+\Gamma^q(C_{2d})_{21}x,
+        \end{align}
+        \begin{gather}
+            \Longrightarrow\Gamma^q(C_{2d})_{12}=0,\quad\Gamma^q(C_{2d})_{22}=-1,\quad\Gamma^q(C_{2d})_{11}=0,\quad\Gamma^q(C_{2d})_{21}=-1,\\
+            \Longrightarrow\Gamma^q(C_{2c})=\left(\begin{matrix}
+                0&-1\\
+                -1&0
+            \end{matrix}\right).
+        \end{gather}
+        We find that the $\Gamma^q$ is exactly $\Gamma^5$. Therefore, $x$ is a irreducible tensor operator for irreducible representation $\Gamma^5$ of $D_4$.
+        \item[(b)] The Hamiltonian under the interaction is
+        \begin{align}
+            H=H_0+Ax
+        \end{align}
+        whose symmetry group is
+        \begin{align}
+            D_1=\{E,C_{2x}\}
+        \end{align}
+        $D_1$, with order of $2$, has two classes:
+        \begin{align}
+            \{E\},\quad\{C_{2x}\},
+        \end{align}
+        so $D_1$ has two inequivalent irreducible $1$-dimensional representation, one of which is the identity representation, $\Gamma_{D_1}^1$:
+        \begin{align}
+            \Gamma_{D_1}^1(E)=\Gamma_{D_1}^1(C_{2x})=1,
+        \end{align}
+        another is
+        \begin{align}
+            \Gamma_{D_1}^2(E)=\Gamma_{D_1}^2(C_{2x})=-1.
+        \end{align}
+        \newpage
+        From problem $2$, we know that the representation of $D_4$ corresponding to $\psi_{mn}$ and $\psi_{nm}$ is $\Gamma^5$. We write the characters of $\Gamma^5$ with character table of $D_1$ together:
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{c|cc}
+             & $\{E\}$ & $\{C_{2x}\}$ \\ \hline
+            $\Gamma^5$ & $2$ & $0$ \\
+            $\Gamma_{D_1}^1$ & $1$ & $1$ \\
+            $\Gamma_{D_1}^2$ & $1$ & $-1$
+            \end{tabular}
+            \end{table}
+            \\We can easily find that
+            \begin{align}
+                \Gamma^5=\Gamma_{D_1}^1\oplus\Gamma_{D_1}^2.
+            \end{align}
+            Therefore, the irreducible representations which the allowed final transform as are $\Gamma_{D_1}^1$ and $\Gamma_{D_1}^2$.
+    \end{enumerate}
+\end{sol}
+\end{document}

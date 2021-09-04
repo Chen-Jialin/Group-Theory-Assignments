@@ -1,0 +1,741 @@
+% !TEX program = pdflatex
+% Group Theory Assignment 12
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 12}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, June 13, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+The analytic homomorphic mapping $\phi$ of SU(2) onto SO(3) is given by
+\[
+    \phi(u)_{jk}=\frac{1}{2}\text{tr}(\sigma_ju\sigma_ku^{-1}),\quad u=\in\text{SU}(2),\quad j,k=1,2,3.
+\]
+Note that the Pauli matrices $\sigma_1,\sigma_2$, and $\sigma_3$ are also denoted respectively by $\sigma_x,\sigma_y$, and $\sigma_z$.
+
+\[
+    \sigma_1=\sigma_x=\left(\begin{matrix}
+        0&1\\
+        1&0
+    \end{matrix}\right),\quad\sigma_2=\sigma_y=\left(\begin{matrix}
+        0&-i\\
+        i&0
+    \end{matrix}\right),\quad\sigma_3=\sigma_z=\left(\begin{matrix}
+        1&0\\
+        0&-1
+    \end{matrix}\right).
+\]
+
+\begin{prob}
+    Verify explicitly that a rotation about the $Oz$-axis is indeed obtained from the given mapping for $u=e^{-i\theta\sigma_z/2}$.
+\end{prob}
+\begin{sol}
+    The matrix of counterclockwise rotation about the $Oz$-axis through angle $\theta$ is
+    \begin{align}
+        R=\left(\begin{matrix}
+            \cos\theta&-\sin\theta&0\\
+            \sin\theta&\cos\theta&0\\
+            0&0&1
+        \end{matrix}\right).
+    \end{align}
+    We then verify that the matrix obtained from the given mapping $\phi$ for $u=e^{-i\theta\sigma_z/2}$ is equal to the above rotation matrix.
+    \begin{align}
+        u=e^{-i\theta\sigma_z/2}=1+\sum_{j=1}^{\infty}\frac{(-i\theta\sigma_z/2)^j}{j!}.
+    \end{align}
+    Since
+    \begin{align}
+        \sigma_z^j=\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)^j=\left\{\begin{array}{ll}
+            \left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right),&j\text{ is odd},\\
+            \left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&j\text{ is even},
+        \end{array}\right.
+    \end{align}
+    we have
+    \begin{align}
+        \nonumber u=&1+\sum_{j=1}^{\infty}\frac{(-i\theta\sigma_z/2)^j}{j!}\\
+        \nonumber=&1+\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\sum_{j=0}^{\infty}\frac{(-i)^{2j+1}(\theta/2)^{2j+1}}{(2j+1)!}+\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)\sum_{j=1}^{\infty}\frac{(-i)^{2j}(\theta/2)^{2j}}{(2j)!}\\
+        \nonumber=&1+(-i)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\sum_{j=0}^{\infty}\frac{(-1)^j(\theta/2)^{2j+1}}{(2j+1)!}+\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)\sum_{j=1}^{\infty}\frac{(-1)^j(\theta/2)^{2j}}{(2j)!}\\
+        \nonumber=&1+(-i)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\sin\frac{\theta}{2}+\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)(\cos\frac{\theta}{2}-1)\\
+        =&\left(\begin{matrix}
+            \cos\frac{\theta}{2}-i\sin\frac{\theta}{2}&0\\
+            0&\cos\frac{\theta}{2}+i\sin\frac{\theta}{2}
+        \end{matrix}\right)=\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right),
+    \end{align}
+    and
+    \begin{align}
+        u^{-1}=\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right).
+    \end{align}
+    Now we calculate the elements of the matrix in SO(3) corresponding to $u$:
+    \begin{align}
+        \nonumber\phi(u)_{11}=&\frac{1}{2}\text{tr}(\sigma_1u\sigma_1u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            e^{i\theta}&0\\
+            0&e^{-i\theta}
+        \end{matrix}\right)=\cos\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{12}=&\frac{1}{2}\text{tr}(\sigma_1u\sigma_2u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            ie^{i\theta}&0\\
+            0&-ie^{-i\theta}
+        \end{matrix}\right)=-\sin\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{13}=&\frac{1}{2}\text{tr}(\sigma_1u\sigma_3u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            0&-1\\
+            1&0
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{21}=&\frac{1}{2}\text{tr}(\sigma_2u\sigma_1u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            -ie^{i\theta}&0\\
+            0&ie^{-i\theta}
+        \end{matrix}\right)=\sin\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{22}=&\frac{1}{2}\text{tr}(\sigma_2u\sigma_2u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            e^{i\theta}&0\\
+            0&e^{-i\theta}
+        \end{matrix}\right)=\cos\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{23}=&\frac{1}{2}\text{tr}(\sigma_2u\sigma_3u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            0&i\\
+            i&0
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{31}=&\frac{1}{2}\text{tr}(\sigma_3u\sigma_1u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            0&e^{-i\theta}\\
+            -e^{i\theta}&0
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{32}=&\frac{1}{2}\text{tr}(\sigma_3u\sigma_2u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            0&-ie^{-i\theta}\\
+            ie^{i\theta}&0
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{33}=&\frac{1}{2}\text{tr}(\sigma_3u\sigma_3u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{-i\theta/2}&0\\
+            0&e^{i\theta/2}
+        \end{matrix}\right)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            e^{i\theta/2}&0\\
+            0&e^{-i\theta/2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)=1.
+    \end{align}
+    The matrix in SO(3) corresponding to $u$ is
+    \begin{align}
+        \phi(u)=\left(\begin{matrix}
+            \cos\theta&-\sin\theta&0\\
+            \sin\theta&\cos\theta&0\\
+            0&0&1
+        \end{matrix}\right),
+    \end{align}
+    which is exactly the rotation matrix we write at the beginning. Therefore, a rotation about the $Oz$-axis is indeed obtained from the given mapping for $u=e^{-i\theta\sigma_z/2}$.
+\end{sol}
+
+\begin{prob}
+    Verify explicitly that a rotation about the $Oy$-axis is indeed obtained from the given mapping for $u=e^{-i\theta\sigma_y/2}$.
+\end{prob}
+\begin{sol}
+    The matrix of counterclockwise rotation about the $Oy$-axis through angle $\theta$ is
+    \begin{align}
+        R=\left(\begin{matrix}
+            \cos\theta&0&\sin\theta\\
+            0&1&0\\
+            -\sin\theta&0&\cos\theta
+        \end{matrix}\right).
+    \end{align}
+    We then verify that the matrix obtained from the given mapping $\phi$ for $u=e^{-i\theta\sigma_y/2}$ is equal to the above rotation matrix.
+    \begin{align}
+        u=e^{-i\theta\sigma_y/2}=1+\sum_{j=1}^{\infty}\frac{(-i\theta\sigma_y/2)^j}{j!}.
+    \end{align}
+    Since
+    \begin{align}
+        \sigma_y^j=\left\{\begin{array}{ll}
+            \left(\begin{matrix}
+                0&-i\\
+                i&0
+            \end{matrix}\right),&j\text{ is odd},\\
+            \left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&j\text{ is even},
+        \end{array}\right.
+    \end{align}
+    we have
+    \begin{align}
+        \nonumber u=&1+\sum_{j=1}\frac{(-i\theta\sigma_y/2)^j}{j!}\\
+        \nonumber=&1+\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\sum_{j=0}^{\infty}\frac{(-i)^{2j+1}(\theta/2)^{2j+1}}{(2j+1)}+\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)\sum_{j=1}^{\infty}\frac{(-i)^{2j}(\theta/2)^{2j}}{(2j)!}\\
+        \nonumber=&1+(-i)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\sum_{j=0}^{\infty}\frac{(-1)^j(\theta/2)^{2j+1}}{(2j+1)}+\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)\sum_{j=1}^{\infty}\frac{(-1)^j(\theta/2)^{2j}}{(2j)!}\\
+        \nonumber=&1+(-i)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\sin\frac{\theta}{2}+\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)(\cos\frac{\theta}{2}-1)\\
+        =&\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right),
+    \end{align}
+    and
+    \begin{align}
+        u^{-1}=\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right).
+    \end{align}
+    Now we calculate the elements of the matrix in SO(3) corresponding to $u$:
+    \begin{align}
+        \nonumber\phi(u)_{11}=&\frac{1}{2}\text{tr}(\sigma_1u\sigma_1u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            \cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}&2\sin\frac{\theta}{2}\cos\frac{\theta}{2}\\
+            -2\sin\frac{\theta}{2}\cos\frac{\theta}{2}&\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}
+        \end{matrix}\right)=\frac{1}{2}\text{tr}\left(\begin{matrix}
+            \cos\theta&\sin\theta\\
+            -\sin\theta&\cos\theta
+        \end{matrix}\right)=\cos\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{12}=&\frac{1}{2}\text{tr}(\sigma_1u\sigma_2u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            i&0\\
+            0&-i
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{13}=&\frac{1}{2}\text{tr}(\sigma_1u\sigma_3u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            2\sin\frac{\theta}{2}\cos\frac{\theta}{2}&\sin^2\frac{\theta}{2}-\cos^2\frac{\theta}{2}\\
+            \cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}&2\sin\frac{\theta}{2}\cos\frac{\theta}{2}
+        \end{matrix}\right)=\frac{1}{2}\text{tr}\left(\begin{matrix}
+            \sin\theta&-\cos\theta\\
+            \cos\theta&\sin\theta
+        \end{matrix}\right)=\sin\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{21}=&\frac{1}{2}\text{tr}(\sigma_2u\sigma_1u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            i(\sin^2\frac{\theta}{2}-i\cos^2\frac{\theta}{2})&-2i\sin\frac{\theta}{2}\cos\frac{\theta}{2}\\
+            -2i\sin\frac{\theta}{2}\cos\frac{\theta}{2}&i(\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2})
+        \end{matrix}\right)=\frac{1}{2}\text{tr}\left(\begin{matrix}
+            -i\cos\theta&-i\sin\theta\\
+            -i\sin\theta&i\cos\theta
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{22}=&\frac{1}{2}\text{tr}(\sigma_2u\sigma_2u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)=1,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{23}=&\frac{1}{2}\text{tr}(\sigma_2u\sigma_3u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            -2i\sin\frac{\theta}{2}\cos\frac{\theta}{2}&i\cos^2\frac{\theta}{2}-i\sin^2\frac{\theta}{2}\\
+            i\cos^2\frac{\theta}{2}-i\sin^2\frac{\theta}{2}&2i\sin\frac{\theta}{2}\cos\frac{\theta}{2}
+        \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+            -i\sin\theta&i\cos\theta\\
+            i\cos\theta&i\sin\theta
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{31}=&\frac{1}{2}\text{tr}(\sigma_3u\sigma_1u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            -2\sin\frac{\theta}{2}\cos\frac{\theta}{2}&\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}\\
+            \sin^2\frac{\theta}{2}-\cos^2\frac{\theta}{2}&-2\sin\frac{\theta}{2}\cos\frac{\theta}{2}
+        \end{matrix}\right)=\frac{1}{2}\text{tr}\left(\begin{matrix}
+            -\sin\theta&\cos\theta\\
+            -\cos\theta&-\sin\theta
+        \end{matrix}\right)=-\sin\theta,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{32}=&\frac{1}{2}\text{tr}(\sigma_3u\sigma_2u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            0&-i\\
+            i&0
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            0&-i\\
+            -i&0
+        \end{matrix}\right)=0,
+    \end{align}
+    \begin{align}
+        \nonumber\phi(u)_{33}=&\frac{1}{2}\text{tr}(\sigma_3u\sigma_3u^{-1})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left[\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&-\sin\frac{\theta}{2}\\
+            \sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            \cos\frac{\theta}{2}&\sin\frac{\theta}{2}\\
+            -\sin\frac{\theta}{2}&\cos\frac{\theta}{2}
+        \end{matrix}\right)\right]\\
+        =&\frac{1}{2}\text{tr}\left(\begin{matrix}
+            \cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}&2\sin\frac{\theta}{2}\cos\frac{\theta}{2}\\
+            -2\sin\frac{\theta}{2}\cos\frac{\theta}{2}&\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}
+        \end{matrix}\right)=\frac{1}{2}\text{tr}\left(\begin{matrix}
+            \cos\theta&2\sin\theta\\
+            -2\sin\theta&\cos\theta
+        \end{matrix}\right)=\cos\theta.
+    \end{align}
+    The matrix in SO(3) corresponding to $u$ is
+    \begin{align}
+        \phi(u)=\left(\begin{matrix}
+            \cos\theta&0&\sin\theta\\
+            0&1&0\\
+            -\sin\theta&0&\cos\theta
+        \end{matrix}\right),
+    \end{align}
+    which is exactly the rotation matrix we write at the beginning. Therefore, a rotation about the $Oy$-axis is indeed obtained from the given mapping for $u=e^{-i\theta\sigma_y/2}$.
+\end{sol}
+
+\begin{prob}
+    Show that the analytic isomorphic mapping of the real Lie algebra su(2) onto the real algebra so(3) is given by
+    \[
+        \psi(a)_{jk}=\frac{1}{2}\text{tr}(\sigma_j[a,\sigma_k]),\quad a\in\text{su}(2),\quad j,k=1,2,3.
+    \]
+\end{prob}
+\begin{sol}
+    The analytic isomorphic mapping of the real Lie algebra su(2) onto the real algebra so(3) is
+    \begin{align}
+        \nonumber\psi(a)_{jk}=&\left.\frac{d\phi(e^{ta})}{dt}\right\rvert_{t=0}\\
+        \nonumber=&\left.\frac{d\left\{\frac{1}{2}\text{tr}[\sigma_je^{ta}\sigma_k(e^{ta})^{-1}]\right\}}{dt}\right\rvert_{t=0}\\
+        \nonumber=&\lim_{t\rightarrow 0}\frac{\frac{1}{2}\text{tr}[\sigma_je^{ta}\sigma_k(e^{ta})^{-1}]-\frac{1}{2}\text{tr}[\sigma_j\sigma_k]}{t}\\
+        \nonumber&(\text{using }e^{ta}b[e^{ta}]^{-1}=b+t[a,b]+\frac{1}{2}[a,[a,b]]+\cdots)\\
+        \nonumber=&\lim_{t\rightarrow 0}\frac{\frac{1}{2}\text{tr}\left\{\sigma_j\left(\sigma_k+t[a,\sigma_k]+\frac{1}{2}t^2[a,[a,\sigma_k]]+\cdots\right)\right\}-\frac{1}{2}\text{tr}\left\{\sigma_j\sigma_k\right\}}{t}\\
+        =&\frac{1}{2}\text{tr}(\sigma_j[a,\sigma_k]),
+    \end{align}
+    for $a\in\text{su}(2),\,j,k=1,2,3$.
+\end{sol}
+
+\begin{prob}
+    Without using the explicit matrix representations of the Pauli matrices, show that $\psi(a_p)_{jk}=\epsilon_{pjk}$ for $a_p=i\sigma_p/2$ with $p=1,2,3$.\\
+    \textbf{Hint:} $[\sigma_p,\sigma_k]=2i\sum_{l=1}^3\epsilon_{pkl}\sigma_l$.
+\end{prob}
+\begin{sol}
+    Using the conclusion we obtained in the latter problem, we have
+    \begin{align}
+        \nonumber\psi(a_p)_{jk}=&\psi(i\sigma_p/2)=\frac{1}{2}\text{tr}(\sigma_j[i\sigma_p/2,\sigma_k])=\frac{1}{2}\text{tr}\left(\frac{i}{2}\sigma_j[\sigma_p,\sigma_k]\right)\\
+        \nonumber=&\frac{1}{2}\text{tr}\left(-\sigma_j\sum_{l=1}^3\epsilon_{pkl}\sigma_l\right)\\
+        \nonumber&(\text{using }\sigma_a\sigma_b=\delta_{ab}I+i\sum_{c=1}^3\epsilon_{abc}\sigma_c,\text{ where }I\text{ is the identity matrix})\\
+        \nonumber=&\frac{1}{2}\text{tr}\left(-\sum_{l=1}^3\epsilon_{pkl}\left(\delta_{jl}I+i\sum_{m=1}^3\epsilon_{jlm}\sigma_m\right)\right)\\
+        \nonumber&(\text{using }\text{tr}(I)=2,\text{ and }\text{tr}\sigma_m=0,\quad m=1,2,3)\\
+        \nonumber=&-\sum_{l=1}^3\epsilon_{pkl}\delta_{lj}\\
+        \nonumber=&-\epsilon_{pkj}\\
+        =&\epsilon_{pjk}.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Using the definition of $\epsilon_{pjk}$, show that
+    \[
+        \psi(a_1)=\left(\begin{matrix}
+            0&0&0\\
+            0&0&1\\
+            0&-1&0
+        \end{matrix}\right),\quad\psi(a_2)=\left(\begin{matrix}
+            0&0&-1\\
+            0&0&0\\
+            1&0&0
+        \end{matrix}\right),\quad\psi(a_3)=\left(\begin{matrix}
+            0&1&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right).
+    \]
+\end{prob}
+\begin{sol}
+    Using the conclusion we obtained in the latter problem and the definition of $\epsilon_{pjk}$, the matrix elements of $\psi(a_1)$ are
+    \begin{align}
+        \psi(a_1)_{11}=&\epsilon_{111}=0,\\
+        \psi(a_1)_{12}=&\epsilon_{112}=0,\\
+        \psi(a_1)_{13}=&\epsilon_{113}=0,\\
+        \psi(a_1)_{21}=&\epsilon_{121}=0,\\
+        \psi(a_1)_{22}=&\epsilon_{122}=0,\\
+        \psi(a_1)_{23}=&\epsilon_{123}=1,\\
+        \psi(a_1)_{31}=&\epsilon_{131}=0,\\
+        \psi(a_1)_{32}=&\epsilon_{132}=-1,\\
+        \psi(a_1)_{33}=&\epsilon_{133}=0,\\
+    \end{align}
+    so
+    \begin{align}
+        \psi(a_1)=\left(\begin{matrix}
+            0&0&0\\
+            0&0&1\\
+            0&-1&0
+        \end{matrix}\right).
+    \end{align}
+    The matrix elements of $\psi(a_2)$ are
+    \begin{align}
+        \psi(a_2)_{11}=&\epsilon_{211}=0,\\
+        \psi(a_2)_{12}=&\epsilon_{212}=0,\\
+        \psi(a_2)_{13}=&\epsilon_{213}=-1,\\
+        \psi(a_2)_{21}=&\epsilon_{221}=0,\\
+        \psi(a_2)_{22}=&\epsilon_{222}=0,\\
+        \psi(a_2)_{23}=&\epsilon_{223}=0,\\
+        \psi(a_2)_{31}=&\epsilon_{231}=1,\\
+        \psi(a_2)_{32}=&\epsilon_{232}=0,\\
+        \psi(a_2)_{33}=&\epsilon_{233}=0,\\
+    \end{align}
+    so
+    \begin{align}
+        \psi(a_2)=\left(\begin{matrix}
+            0&0&-1\\
+            0&0&0\\
+            1&0&0
+        \end{matrix}\right).
+    \end{align}
+    The matrix elements of $\psi(a_3)$ are
+    \begin{align}
+        \psi(a_3)_{11}=&\epsilon_{311}=0,\\
+        \psi(a_3)_{12}=&\epsilon_{312}=1,\\
+        \psi(a_3)_{13}=&\epsilon_{313}=0,\\
+        \psi(a_3)_{21}=&\epsilon_{321}=-1,\\
+        \psi(a_3)_{22}=&\epsilon_{322}=0,\\
+        \psi(a_3)_{23}=&\epsilon_{323}=0,\\
+        \psi(a_3)_{31}=&\epsilon_{331}=0,\\
+        \psi(a_3)_{32}=&\epsilon_{332}=0,\\
+        \psi(a_3)_{33}=&\epsilon_{333}=0,\\
+    \end{align}
+    so
+    \begin{align}
+        \psi(a_3)=\left(\begin{matrix}
+            0&1&0\\
+            -1&0&0\\
+            0&0&0
+        \end{matrix}\right).
+    \end{align}
+\end{sol}
+\end{document}

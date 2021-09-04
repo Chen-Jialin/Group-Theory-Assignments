@@ -1,0 +1,320 @@
+% !TEX program = pdflatex
+% Group Theory Assignment 10
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 10}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, May 27, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+\usepackage{ytableau}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+\begin{prob}
+    Simplify the following permutations into the product of the cycles without any common object.
+    \begin{enumerate}
+        \item[(a)] $(1\quad 2)(2\quad 3)(1\quad 2)$.
+        \item[(b)] $(1\quad 2\quad 3)(1\quad 3\quad 4)(3\quad 2\quad 1)$.
+        \item[(c)] $(1\quad 2\quad 3\quad 4)^{-1}$.
+        \item[(d)] $(1\quad 2\quad 4\quad 5)(4\quad 3\quad 2\quad 6)$.
+        \item[(e)] $(1\quad 2\quad 3)(4\quad 2\quad 6)(3\quad 4\quad 5\quad 6)$.
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)]
+        \begin{align}
+            (1\quad 2)(2\quad 3)(1\quad 2)=(1\quad 2\quad 3)(1\quad 2)=(3\quad 1\quad 2)(1\quad 2)=(3\quad 1)(1\quad 2)(1\quad 2)=(3\quad 1).
+        \end{align}
+        \item[(b)]
+        \begin{align}
+            \nonumber(1\quad 2\quad 3)(1\quad 3\quad 4)(3\quad 2\quad 1)=&(2\quad 3\quad 1)(1\quad 3\quad 4)(3\quad 2\quad 1)=(2\quad 3)(3\quad 1)(1\quad 3)(3\quad 4)(3\quad 2\quad 1)\\
+            \nonumber=&(2\quad 3)(3\quad 4)(3\quad 2\quad 1)=(2\quad 3)(4\quad 3)(3\quad 2\quad 1)=(2\quad 3)(4\quad 3\quad 2\quad 1)\\
+            =&(2\quad 3)(3\quad 2\quad 1\quad 4)=(2\quad 3)(3\quad 2)(2\quad 1\quad 4)=(2\quad 1\quad 4).
+        \end{align}
+        \item[(c)]
+        \begin{align}
+            \because(1\quad 2\quad 3\quad 4)^4=E,
+        \end{align}
+        \begin{align}
+            \nonumber\therefore(1\quad 2\quad 3\quad 4)^{-1}=&(1\quad 2\quad 3\quad 4)^3=(3\quad 4\quad 1\quad 2)(1\quad 2\quad 3\quad 4)(3\quad 4\quad 1\quad 2)\\
+            \nonumber=&(3\quad 4\quad 1)(1\quad 2)(1\quad 2)(2\quad 3)(3\quad 4)(3\quad 4)(4\quad 1\quad 2)=(3\quad 4\quad 1)(2\quad 3)(4\quad 1\quad 2)\\
+            \nonumber=&(4\quad 1\quad 3)(3\quad 2)(4\quad 1\quad 2)=(4\quad 1\quad 3\quad 2)(4\quad 1\quad 2)\\
+            \nonumber=&(3\quad 2\quad 4\quad 1)(4\quad 1\quad 2)=(3\quad 2\quad 4)(4\quad 1)(4\quad 1)(1\quad 2)\\
+            =&(3\quad 2\quad 4)(1\quad 2)=(4\quad 3\quad 2)(2\quad 1)=(4\quad 3\quad 2\quad 1).
+        \end{align}
+        \item[(d)]
+        \begin{align}
+            \nonumber(1\quad 2\quad 4\quad 5)(4\quad 3\quad 2\quad 6)=&(5\quad 1\quad 2\quad 4)(4\quad 3\quad 2\quad 6)=(5\quad 1\quad 2)(2\quad 4)(4\quad 3\quad 2)(2\quad 6)\\
+            \nonumber=&(5\quad 1\quad 2)(2\quad 4)(2\quad 4\quad 3)(2\quad 6)\\
+            \nonumber=&(5\quad 1\quad 2)(2\quad 4)(2\quad 4)(4\quad 3)(2\quad 6)\\
+            \nonumber=&(5\quad 1\quad 2)(4\quad 3)(2\quad 6)=(5\quad 1\quad 2)(2\quad 6)(4\quad 3)\\
+            =&(5\quad 1\quad 2\quad 6)(4\quad 3).
+        \end{align}
+        \item[(e)]
+        \begin{align}
+            \nonumber(1\quad 2\quad 3)(4\quad 2\quad 6)(3\quad 4\quad 5\quad 6)=&(3\quad 1\quad 2)(2\quad 6\quad 4)(3\quad 4\quad 5\quad 6)\\
+            \nonumber=&(3\quad 1\quad 2\quad 6\quad 4)(3\quad 4\quad 5\quad 6)\\
+            \nonumber=&(1\quad 2\quad 6\quad 4\quad 3)(3\quad 4\quad 5\quad 6)\\
+            \nonumber=&(1\quad 2\quad 6\quad 4)(4\quad 3)(3\quad 4)(4\quad 5\quad 6)\\
+            \nonumber=&(1\quad 2\quad 6\quad 4)(4\quad 5\quad 6)\\
+            \nonumber=&(1\quad 2\quad 6\quad 4)(6\quad 4\quad 5)\\
+            \nonumber=&(1\quad 2\quad 6)(6\quad 4)(6\quad 4)(4\quad 5)\\
+            =&(1\quad 2\quad 6)(4\quad 5).
+        \end{align}
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    Write down all the Young patterns of the permutation group $S_6$ from the largest to the smallest.
+\end{prob}
+\begin{sol}
+    Young pattern of the group $S_6$ from the largest to the smallest:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{cccc}
+        \begin{tabular}[c]{@{}c@{}}[6]:\\ \ydiagram{6}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[5,1]:\\ \ydiagram{5,1}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[4,2]:\\ \ydiagram{4,2}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[4,1,1]:\\ \ydiagram{4,1,1}\end{tabular} \\
+        \begin{tabular}[c]{@{}c@{}}[3,3]:\\ \ydiagram{3,3}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[3,2,1]:\\ \ydiagram{3,2,1}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[3,1,1,1]:\\ \ydiagram{3,1,1,1}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[2,2,2]:\\ \ydiagram{2,2,2}\end{tabular} \\
+        \begin{tabular}[c]{@{}c@{}}[2,2,1,1]:\\ \ydiagram{2,2,1,1}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[2,1,1,1,1]:\\ \ydiagram{2,1,1,1,1}\end{tabular} & \begin{tabular}[c]{@{}c@{}}[1,1,1,1,1,1]:\\ \ydiagram{1,1,1,1,1,1}\end{tabular} & 
+        \end{tabular}
+    \end{table}
+\end{sol}
+
+\begin{prob}
+    Using the hook rule, calculate the number $d_{[3,2,1,1]}(S_7)$ of the standard Young tableaux for the Young pattern $[3,2,1,1]$ of the permutation group $7$.
+\end{prob}
+\begin{sol}
+    The Young pattern [3,2,1,1] is
+    \[
+        \ydiagram{3,2,1,1}.
+    \]
+    The corresponding Hook numbers of the boxes are
+    \[
+        \begin{ytableau}
+            6 & 3 & 1\\
+            4 & 1\\
+            2\\
+            1
+        \end{ytableau}.
+    \]
+    The product of the Hook numbers is
+    \begin{align}
+        Y_h^{[3,2,1,1]}=\prod_{ij}h_{ij}=6\times 3\times 4\times 2.
+    \end{align}
+    Then
+    \begin{align}
+        d_{[3,2,1,1]}(S_7)=\frac{7!}{Y_h^{[3,2,1,1]}}=35.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Write down the Young operator corresponding to the following tableau.\\
+    \begin{center}
+        \begin{ytableau}
+            1 & 2 \\
+            3 & 4
+        \end{ytableau}
+    \end{center}
+\end{prob}
+\begin{sol}
+    Horizontal permutations:
+    \begin{align}
+        P_1&:E,(1\quad 2).\\
+        P_2&:E,(3\quad 4).\\
+        P=\prod_jP_j&:E,(1\quad 2),(3\quad 4),(1\quad 2)(3\quad 4).
+    \end{align}
+    Horizontal operator:
+    \begin{align}
+        \mathcal{P}=\sum P=E+(1\quad 2)+(3\quad 4)+(1\quad 2)(3\quad 4).
+    \end{align}
+    Vertical permutations:
+    \begin{align}
+        Q_1&:E,(1\quad 3).\\
+        Q_2&:E,(2\quad 4).\\
+        Q=\prod_kQ_k&:E,(1\quad 3),(2\quad 4),(1\quad 3)(2\quad 4).
+    \end{align}
+    Vertical operator:
+    \begin{align}
+        \mathcal{Q}=\sum\delta(Q)Q=E-(1\quad 3)-(2\quad 4)+(1\quad 3)(2\quad 4).
+    \end{align}
+    Young operator:
+    \begin{align}
+        \mathcal{Y}=&\mathcal{P}\mathcal{Q}=[E+(1\quad 2)+(3\quad 4)+(1\quad 2)(3\quad 4)][E-(1\quad 3)-(2\quad 4)+(1\quad 3)(2\quad 4)]\\
+        \nonumber=&E+(1\quad 2)+(3\quad 4)+(1\quad 2)(3\quad 4)\\
+        \nonumber&-(1\quad 3)-(2\quad 1\quad 3)-(4\quad 3\quad 1)-(2\quad 1\quad 4\quad 3)\\
+        \nonumber&-(2\quad 4)-(1\quad 2\quad 4)-(3\quad 4\quad 2)-(1\quad 2\quad 3\quad 4)\\
+        &+(1\quad 3)(2\quad 4)+(1\quad 3\quad 2\quad 4)+(3\quad 1\quad 4\quad 2)+(1\quad 4)(3\quad 2).
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Write down the permutation $R_{12}$ transforming the Young tableau $\mathcal{Y}_2$ to the Young tableau $\mathcal{Y}_1$.
+    \[
+        \mathcal{Y}_1:
+        \begin{ytableau}
+            1 & 2 & 3\\
+            4
+        \end{ytableau}
+        \qquad\mathcal{Y}_2:
+        \begin{ytableau}
+            1 & 2 & 4\\
+            3
+        \end{ytableau}
+    \]
+    Show that $\mathcal{P}_1R_{12}=R_{12}\mathcal{P}_2$, $\mathcal{Q}_1R_{12}=R_{12}\mathcal{Q}_2$, and $\mathcal{Y}_1R_{12}=R_{12}\mathcal{Y}_2$.
+\end{prob}
+\begin{sol}
+    The permutation transforming the Young tableau $\mathcal{Y}_2$ to the Young tableau $\mathcal{Y}_1$ is
+    \begin{align}
+        R_{12}=\left(\begin{matrix}
+            1 & 2 & 4 & 3\\
+            1 & 2 & 3 & 4
+        \end{matrix}\right)=(3\quad 4).
+    \end{align}
+    The horizontal permutations of the first Young tableau:
+    \begin{align}
+        P_{1,1}&:E,(1\quad 2),(1\quad 3),(2\quad 3),(1\quad 2\quad 3),(3\quad 2\quad 1).\\
+        P_{1,2}&:E.\\
+        P_1=\prod_jP_{1,j}&:E,(1\quad 2),(1\quad 3),(2\quad 3),(1\quad 2\quad 3),(3\quad 2\quad 1).
+    \end{align}
+    The horizontal operator of the first Young tableau:
+    \begin{align}
+        \mathcal{P}_1=\sum P_1=E+(1\quad 2)+(1\quad 3)+(2\quad 3)+(1\quad 2\quad 3)+(3\quad 2\quad 1).
+    \end{align}
+    The horizontal permutations of the second Young tableau:
+    \begin{align}
+        P_{2,1}&:E,(1\quad 2),(1\quad 4),(2\quad 4),(1\quad 2\quad 4),(4\quad 2\quad 1).\\
+        P_{2,2}&:E.\\
+        P_2=\prod_jP_{2,j}&:E,(1\quad 2),(1\quad 4),(2\quad 4),(1\quad 2\quad 4),(4\quad 2\quad 1).
+    \end{align}
+    The horizontal operator of the second Young tableau:
+    \begin{align}
+        \mathcal{P}_2=\sum P_2=E+(1\quad 2)+(1\quad 4)+(2\quad 4)+(1\quad 2\quad 4)+(4\quad 2\quad 1).
+    \end{align}
+    Since
+    \begin{align}
+        \mathcal{P}_1R_{12}=(3\quad 4)+(1\quad 2)(3\quad 4)+(1\quad 3\quad 4)+(2\quad 3\quad 4)+(1\quad 2\quad 3\quad 4)+(2\quad 1\quad 3\quad 4),
+    \end{align}
+    and
+    \begin{align}
+        R_{12}\mathcal{P}_2=(3\quad 4)+(3\quad 4)(1\quad 2)+(3\quad 4\quad 1)+(3\quad 4\quad 2)+(3\quad 4\quad 1\quad 2)+(3\quad 4\quad 2\quad 1),
+    \end{align}
+    we have
+    \begin{align}
+        \mathcal{P}_1R_{12}=R_{12}\mathcal{P}_2.
+    \end{align}
+    The vertical permutations of the first Young tableau:
+    \begin{align}
+        Q_{1,1}&:E,(1\quad 4).\\
+        Q_{1,2}&:E.\\
+        Q_{1,3}&:E.\\
+        Q_1=\prod_kQ_{1,k}&:E,(1\quad 4).
+    \end{align}
+    The vertical operator of the first Young tableau:
+    \begin{align}
+        \mathcal{Q}_1=\sum\delta(Q_1)Q_1=E-(1\quad 4).
+    \end{align}
+    The vertical permutations of the second tableau:
+    \begin{align}
+        Q_{2,1}&:E,(1\quad 3).\\
+        Q_{2,2}&:E.\\
+        Q_{2,3}&:E.\\
+        Q_2=\prod_kQ_{2,k}&:E,(1\quad 3).
+    \end{align}
+    The vertical permutations of the second Young tableau:
+    \begin{align}
+        \mathcal{Q}_2=\sum\delta(Q_2)Q_2=E-(1\quad 3).
+    \end{align}
+    Since
+    \begin{align}
+        \mathcal{Q}_1R_{12}=(3\quad 4)-(1\quad 4\quad 3),
+    \end{align}
+    and
+    \begin{align}
+        R_{12}\mathcal{Q}_2=(3\quad 4)-(4\quad 3\quad 1),
+    \end{align}
+    we have
+    \begin{align}
+        \mathcal{Q}_1R_{12}=R_{12}\mathcal{Q}_2.
+    \end{align}
+    The Young operator of the first Young tableau:
+    \begin{align}
+        \nonumber\mathcal{Y}_1=&\mathcal{P}_1\mathcal{Q}_1=E+(1\quad 2)+(1\quad 3)+(2\quad 3)+(1\quad 2\quad 3)+(3\quad 2\quad 1)\\
+        &-(1\quad 4)-(2\quad 1\quad 4)-(3\quad 1\quad 4)-(2\quad 3)(1\quad 4)-(2\quad 3\quad 1\quad 4)-(3\quad 2\quad 1\quad 4).
+    \end{align}
+    The Young operator of the second Young tableau:
+    \begin{align}
+        \nonumber\mathcal{Y}_2=&\mathcal{P}_2\mathcal{Q}_2=E+(1\quad 2)+(1\quad 4)+(2\quad 4)+(1\quad 2\quad 4)+(4\quad 2\quad 1)\\
+        &-(1\quad 3)-(2\quad 1\quad 3)+(4\quad 1\quad 3)+(2\quad 4)(1\quad 3)+(2\quad 4\quad 1\quad 3)+(4\quad 2\quad 1\quad 3).
+    \end{align}
+    Since
+    \begin{align}
+        \mathcal{Y}_1R_{12}=&(3\quad 4)+(1\quad 2)(3\quad 4)+(1\quad 3\quad 4)+(2\quad 3\quad 4)+(1\quad 2\quad 3\quad 4)+(2\quad 1\quad 3\quad 4)\\
+        &-(1\quad 4\quad 3)-(2\quad 1\quad 4\quad 3)-(1\quad 4)-(2\quad 3\quad 1\quad 4)-(2\quad 3)(1\quad 4)-(2\quad 1\quad 4),
+    \end{align}
+    and
+    \begin{align}
+        R_{12}\mathcal{Y}_2=&(3\quad 4)+(3\quad 4)(1\quad 2)+(3\quad 4\quad 1)+(3\quad 4\quad 2)+(3\quad 4\quad 1\quad 2)+(3\quad 4\quad 2\quad 1)\\
+        &-(4\quad 3\quad 1)-(4\quad 3\quad 2\quad 1)-(4\quad 1)-(4\quad 2\quad 3\quad 1)-(4\quad 1)(3\quad 2)-(4\quad 2\quad 1),
+    \end{align}
+    we have
+    \begin{align}
+        \mathcal{Y}_1R_{12}=R_{12}\mathcal{Y}_2.
+    \end{align}
+\end{sol}
+\end{document}

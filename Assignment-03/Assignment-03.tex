@@ -1,0 +1,679 @@
+% !TEX program = pdflatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
+% Group Theory Assignment 03
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 03}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, March 25, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+% \usepackage{graphicx}
+\newcommand{\Tr}{\text{Tr }}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+\begin{prob}
+    $\Gamma$ is a faithful representation of a non-Abelian group $G$. If the representation of each element in the group is transformed as in the following, determine whether the resultant set of matrices forms a representation of the group $G$.
+    \begin{enumerate}
+        \item[(a)] $\Gamma(T)^{\dagger}$ (Hermitian conjugate).
+        \item[(b)] $\Gamma(T)^t$ (transpose).
+        \item[(c)] $\Gamma(T)^{-1}$ (inverse).
+        \item[(d)] $\Gamma(T)^*$ (complex conjugate).
+        \item[(e)] $(\Gamma(T)^{-1})^{\dagger}$ (Hermitian conjugate of the inverse).
+        \item[(f)] $\det \Gamma(T)$ (determinant).
+        \item[(g)] $\Tr\Gamma$ (trace).
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] $\Gamma(T)^{\dagger}$ does \textbf{not} form a representation of $G$.\\
+        Proof:
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $\Gamma(T_1)^{\dagger}\Gamma(T_2)^{\dagger}=[\Gamma(T_2)\Gamma(T_1)]^{\dagger}=\Gamma(T_2T_1)^{\dagger}$. Because $G$ is a non-Abelian group, $T_2T_1$ is not necessarily equal to $T_1T_2$. As a result, $\Gamma(T_1)^{\dagger}\Gamma(T_2)^{\dagger}=\Gamma(T_2T_1)^{\dagger}\neq\Gamma(T_1T_2)^{\dagger}$, so $\Gamma(T)\dagger$ does not form a representation of $G$.
+        \item[(b)] $\Gamma(T)^t$ does \textbf{not} form a representation of $G$.\\
+        Proof:
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $\Gamma(T_1)^t\Gamma(T_2)^t=[\Gamma(T_2)\Gamma(T_1)]^t=\Gamma(T_2T_1)^t$. Because $G$ is a non-Abelian group, $T_2T_1$ is not necessarily equal to $T_1T_2$. As a result, $\Gamma(T_1)^t\Gamma(T_2)^t=\Gamma(T_2T_1)^t\neq\Gamma(T_1T_2)^t$, so $\Gamma(T)^t$ does not form a representation of $G$.
+        \item[(c)] $\Gamma(T)^{-1}$ does \textbf{not} form a representation of $G$.\\
+        Proof:
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $\Gamma(T_1)^{-1}\Gamma^{-1}(T_2)=[\Gamma(T_2)\Gamma(T_1)]^{-1}=\Gamma(T_2T_1)^{-1}$. Because $G$ is a non-Abelian group, $T_2T_1$ is not necessarily equal to $T_1T_2$. As a result, $\Gamma(T_1)^{-1}\Gamma(T_2)^{-1}\neq\Gamma(T_2T_1)^{-1}\neq\Gamma(T_1T_2)^{-2}$, so $\Gamma(T)^{-1}$ does not form a representation of $G$.
+        \item[(d)] $\Gamma(T)^*$ forms a representation of $G$.\\
+        Proof:
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $\Gamma(T_1)^*\Gamma(T_2)^*[\Gamma(T_1)\Gamma(T_2)]^*=\Gamma(T_1T_2)^*$, so $\Gamma(T)^*$ forms a representation of $G$.
+        \item[(e)] $(\Gamma(T)^{-1})^{\dagger}$ forms a representation of $G$.\\
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $(\Gamma(T_1)^{-1})^{\dagger}(\Gamma(T_2)^{-1})^{\dagger}=(\Gamma(T_2)^{-1}\Gamma(T_1)^{-1})^{\dagger}=((\Gamma(T_1)\Gamma(T_2))^{-1})^{\dagger}=[\Gamma(T_1T_2)^{-1}]^{\dagger}$, so $(\Gamma(T)^{-1})^{\dagger}$ forms a representation of $G$.
+        \item[(f)] $\det\Gamma(T)$ forms a representation of $G$.\\
+        Proof:
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $\det(\Gamma(T_1))\det(\Gamma(T_2))=\det(\Gamma(T_1)\Gamma(T_2))=\det(\Gamma(T_1T_2))$, so $\det\Gamma(T)$ forms a representation of $G$.
+        \item[(g)] $\Tr\Gamma(T)$ does \textbf{not} form a representation of $G$.\\
+        Proof:
+        For two arbitrary elements $T_1$ and $T_2$ in $G$, $\Tr(\Gamma(T_1T_2))=\Tr(\Gamma(T_1)\Gamma(T_2))$. Since the trace of the product is not necessarily equal to the product of the traces, $\Tr(\Gamma(T_1T_2))=\Tr(\Gamma(T_1)\Gamma(T_2))\neq\Tr(\Gamma(T_1))\Tr(\Gamma(T_2))$. As a result, $\Tr\Gamma(T)$ does not form a representation of $G$.
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    A two-dimensional representation of $C_2=\{E,a\}$ is given by
+    \[
+        \Gamma(E)=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right),\quad\Gamma(a)=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right).
+    \]
+    Find the similarity transformation that reduces the above two-dimensional representation of $C_2$ into the direct sum of two irreducible one-dimensional representation.
+\end{prob}
+\begin{sol}
+    To find the similarity transformation that reduce $\Gamma$ into the direct sum of two irreducible one-dimensional representation is to diagonalize $\Gamma$: $\Gamma''=S^{-1}\Gamma(T)S$. Since for any invertible matrix $S$, $S^{-1}\Gamma(E)S=S^{-1}S=S^{-1}S=1_2$, which is already a diagonal matrix, we only need to find $S$ that diagonalize $\Gamma(a)$.\\
+    The characteristic equation of $\Gamma(a)$ is
+    \begin{equation}
+        \det[\Gamma(a)-\lambda 1_2]=\left\lvert\begin{matrix}
+            -\lambda&1\\
+            1&-\lambda
+        \end{matrix}\right\rvert=\lambda^2-1=0.
+    \end{equation}
+    Solving the above characteristic equation, we get the two eigenvalues of $\Gamma(a)$:
+    \begin{equation}
+        \lambda_1=1,\quad\lambda_2=-1.
+    \end{equation}
+    Suppose the eigenvector is $(\begin{matrix}
+        x&y
+    \end{matrix})^T$. For eigenvalue $\lambda_1=1$, we have
+    \begin{equation}
+        \Gamma(a)\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right)=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right)=\lambda_1\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right)=\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right).
+    \end{equation}
+    Solving the above eigenfunction and normalizing the solution, we get the eigenvector corresponding to $\lambda_1=1$:
+    \begin{equation}
+        \left(\begin{matrix}
+            x_1\\
+            y_1
+        \end{matrix}\right)=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+            1\\
+            1
+        \end{matrix}\right).
+    \end{equation}
+    For eigenvalue $\lambda_2=-1$, we have
+    \begin{equation}
+        \Gamma(a)\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right)=\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right)=\lambda_2\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right)=-\left(\begin{matrix}
+            x\\
+            y
+        \end{matrix}\right).
+    \end{equation}
+    Solving the above eigenfunction and normalizing the solution, we get the eigenvector corresponding to $\lambda_2=-1$:
+    \begin{equation}
+        \left(\begin{matrix}
+            x_2\\
+            y_2
+        \end{matrix}\right)=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+            1\\
+            -1
+        \end{matrix}\right).
+    \end{equation}
+    We choose the transformation matrix as
+    \begin{equation}
+        S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+            1&1\\
+            1&-1
+        \end{matrix}\right),
+    \end{equation}
+    which is equal to its inverse:
+    \begin{equation}
+        S^{-1}=S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+            1&1\\
+            1&-1
+        \end{matrix}\right).
+    \end{equation}
+    Now we make the following similarity transformation to reduce the original representation of $C_2$ into the direct sum of two irreducible one-dimensional representation:
+    \begin{align}
+        \Gamma''(E)=&S^{-1}\Gamma(E)S=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right)=\Gamma_{11}''(E)\oplus\Gamma_{22}''(E),\\
+        \Gamma''(a)=&S^{-1}\Gamma(a)S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+            1&1\\
+            1&-1
+        \end{matrix}\right)\left(\begin{matrix}
+            0&1\\
+            1&0
+        \end{matrix}\right)\frac{1}{\sqrt{2}}\left(\begin{matrix}
+            1&1\\
+            1&-1
+        \end{matrix}\right)=\left(\begin{matrix}
+            1&0\\
+            0&-1
+        \end{matrix}\right)=\Gamma_{11}''(a)\oplus\Gamma_{22}''(a).
+    \end{align}
+    where
+    \begin{align}
+        \Gamma_{11}(E)=&1,&\Gamma_{11}(a)=&1,\\
+        \Gamma_{22}(E)=&1,&\Gamma_{22}(a)=&-1.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Consider the following two-dimensional representation $\Gamma$ of the group $G=\{E,a,b\}$ of order $g=3$.
+    \[
+        \Gamma(E)=\left(\begin{matrix}
+            1&0\\
+            0&1
+        \end{matrix}\right),\quad\Gamma(a)=\frac{1}{2}\left(\begin{matrix}
+            -1&\sqrt{3}\\
+            -\sqrt{3}&-1
+        \end{matrix}\right),\quad\Gamma(b)=\frac{1}{2}\left(\begin{matrix}
+            -1&-\sqrt{3}\\
+            \sqrt{3}&-1
+        \end{matrix}\right)
+    \]
+    \begin{enumerate}
+        \item[(a)] Check the orthogonality relation
+        \begin{equation}
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{jk}^*\Gamma(T)_{st}=\frac{1}{d}\delta_{js}\delta_{kt}
+        \end{equation}
+        for all the possible combinations of $j$, $k$, $s$, and $t$. Note that $j,k,s,t=1,2$ and that $d=2$.
+        \item[(b)] Is the representation $\Gamma$ reducible?
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] 
+        \begin{align}
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{11}^*\Gamma(T)_{11}=&\frac{1}{3}[1\times 1+\frac{1}{2}(-1)\times\frac{1}{2}(-1)+\frac{1}{2}(-1)\times\frac{1}{2}(-1)]=\frac{1}{2}=\frac{1}{d}\delta_{11}\delta_{11},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{11}^*\Gamma(T)_{12}=&\frac{1}{3}[1\times 0+\frac{1}{2}(-1)\times\frac{1}{2}\sqrt{3}+\frac{1}{2}(-1)\times\frac{1}{2}(-\sqrt{3})]=0=\frac{1}{d}\delta_{11}\delta_{12},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{11}^*\Gamma(T)_{21}=&\frac{1}{3}[1\times 0+\frac{1}{2}(-1)\times\frac{1}{2}(-\sqrt{3})+\frac{1}{2}(-1)\times\frac{1}{2}\sqrt{3}]=0=\frac{1}{d}\delta_{12}\delta_{11},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{11}^*\Gamma(T)_{22}=&\frac{1}{3}[1\times 1+\frac{1}{2}(-1)\times\frac{1}{2}(-1)+\frac{1}{2}(-1)\times\frac{1}{2}(-1)]=\frac{1}{2}\neq\frac{1}{d}\delta_{12}\delta_{12}=0,\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{12}^*\Gamma(T)_{11}=&\frac{1}{3}[0\times 1+\frac{1}{2}\sqrt{3}\times\frac{1}{2}(-1)+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}(-1)]=0=\frac{1}{d}\delta_{11}\delta_{21},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{12}^*\Gamma(T)_{12}=&\frac{1}{3}[0\times 0+\frac{1}{2}\sqrt{3}\times\frac{1}{2}\sqrt{3}+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}(-\sqrt{3})]=\frac{1}{2}=\frac{1}{d}\delta_{11}\delta_{22},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{12}^*\Gamma(T)_{21}=&\frac{1}{3}[0\times 0+\frac{1}{2}\sqrt{3}\times\frac{1}{2}(-\sqrt{3})+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}\sqrt{3}]=-\frac{1}{2}\neq\frac{1}{d}\delta_{12}\delta_{21}=0,\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{12}^*\Gamma(T)_{22}=&\frac{1}{3}[0\times 1+\frac{1}{2}\sqrt{3}\times\frac{1}{2}(-1)+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}(-1)]=0=\frac{1}{d}\delta_{12}\delta_{22},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{21}^*\Gamma(T)_{11}=&\frac{1}{3}[0\times 1+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}(-1)+\frac{1}{2}\sqrt{3}\times\frac{1}{2}(-1)]=0=\frac{1}{d}\delta_{21}\delta_{11},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{21}^*\Gamma(T)_{12}=&\frac{1}{3}[0\times 0+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}\sqrt{3}+\frac{1}{2}\sqrt{3}\times\frac{1}{2}(-\sqrt{3})]=-\frac{1}{2}\neq\frac{1}{d}\delta_{21}\delta_{12}=0,\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{21}^*\Gamma(T)_{21}=&\frac{1}{3}[0\times 0+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}(-\sqrt{3})+\frac{1}{2}\sqrt{3}\times\frac{1}{2}\sqrt{3}]=\frac{1}{2}=\frac{1}{d}\delta_{22}\delta_{11},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{21}^*\Gamma(T)_{22}=&\frac{1}{3}[0\times 1+\frac{1}{2}(-\sqrt{3})\times\frac{1}{2}(-1)+\frac{1}{2}\sqrt{3}\times\frac{1}{2}(-1)]=0=\frac{1}{d}\delta_{22}\delta_{12},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{22}^*\Gamma(T)_{11}=&\frac{1}{3}[1\times 1+\frac{1}{2}(-1)\times\frac{1}{2}(-1)+\frac{1}{2}(-1)\times\frac{1}{2}(-1)]=\frac{1}{2}\neq\frac{1}{d}\delta_{21}\delta_{21}=0,\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{22}^*\Gamma(T)_{12}=&\frac{1}{g}[1\times 0+\frac{1}{2}(-1)\times\frac{1}{2}\sqrt{3}+\frac{1}{2}(-1)\times\frac{1}{2}(-\sqrt{3})]=0=\frac{1}{d}\delta_{21}\delta_{22},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{22}^*\Gamma(T)_{21}=&\frac{1}{g}[1\times 0+\frac{1}{2}(-1)\times\frac{1}{2}(-\sqrt{3})+\frac{1}{2}(-1)\times\frac{1}{2}\sqrt{3}]=0=\frac{1}{d}\delta_{22}\delta_{21},\\
+            \frac{1}{g}\sum_{T\in G}\Gamma(T)_{22}^*\Gamma(T)_{22}=&\frac{1}{g}[1\times 1+\frac{1}{2}(-1)\times\frac{1}{2}(-1)+\frac{1}{2}(-1)\times\frac{1}{2}(-1)]=\frac{1}{2}=\frac{1}{d}\delta_{22}\delta_{22}.
+        \end{align}
+        Therefore, the orthogonality relation does \textbf{not} holds for all the combinations of $j$, $k$, $s$, and $t$.
+        \item[(b)] Since
+        \begin{align}
+            \Gamma(E)\Gamma(E)=&\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),\\
+            \Gamma(a)\Gamma(a)^{\dagger}=&\frac{1}{2}\left(\begin{matrix}
+                -1&\sqrt{3}\\
+                -\sqrt{3}&-1
+            \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+                -1&-\sqrt{3}\\
+                \sqrt{3}&-1
+            \end{matrix}\right)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),\\
+            \Gamma(b)\Gamma(b)^{\dagger}=&\frac{1}{2}\left(\begin{matrix}
+                -1&-\sqrt{3}\\
+                \sqrt{3}&-1
+            \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+                -1&\sqrt{3}\\
+                -\sqrt{3}&-1
+            \end{matrix}\right)=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right).
+        \end{align}
+        $\Gamma$ is a unitary representation of $G$.
+        Because the orthogonality relation does not holds for all the combinations of $j$, $k$, $s$, and $t$, the representation $\Gamma$ is reducible.\\
+        Actually, we can choose transformation matrix
+        \begin{equation}
+            S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&1\\
+                i&-i
+            \end{matrix}\right),
+        \end{equation}
+        whose inverse is
+        \begin{equation}
+            S^{-1}=\frac{1}{2}\left(\begin{matrix}
+                1&-i\\
+                1&i
+            \end{matrix}\right),
+        \end{equation}
+        so that $\Gamma$ can be transformed into a completely reducible representation
+        \begin{align}
+            \Gamma''(E)=&S^{-1}\Gamma(E)S=1_2=\Gamma_{11}''(E)\oplus\Gamma_{22}''(E),\\
+            \Gamma''(a)=&S^{-1}\Gamma(a)S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&-i\\
+                1&i
+            \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+                -1&\sqrt{3}\\
+                -\sqrt{3}&-1
+            \end{matrix}\right)\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&1\\
+                i&-i
+            \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+                -1+\sqrt{3}i&0\\
+                0&-1-\sqrt{3}
+            \end{matrix}\right)=\Gamma_{11}''(a)\oplus\Gamma_{22}''(a),\\
+            \Gamma''(b)=&S^{-1}\Gamma(a)S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&-i\\
+                1&i
+            \end{matrix}\right)\frac{1}{2}\left(\begin{matrix}
+                -1&-\sqrt{3}\\
+                \sqrt{3}&-1
+            \end{matrix}\right)\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&1\\
+                i&-i
+            \end{matrix}\right)=\frac{1}{2}\left(\begin{matrix}
+                -1-\sqrt{3}i&0\\
+                0&-1+\sqrt{3}
+            \end{matrix}\right)=\Gamma_{11}''(b)\oplus\Gamma_{22}''(b).
+        \end{align}
+        where
+        \begin{align}
+            \Gamma_{11}''(E)=&1,&\Gamma_{11}''(a)=&-1+\sqrt{3}i,&\Gamma_{22}''(b)=&-1-\sqrt{3}i,\\
+            \Gamma_{22}''(E)=&1,&\Gamma_{22}''(a)=&-1-\sqrt{3}i,&\Gamma_{22}''(b)=&-1+\sqrt{3}i.
+        \end{align}
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    Show that the sum of the characters of all the elements of a finite group in an irreducible representation except the identity representation is zero.
+\end{prob}
+\begin{sol}
+    Notations:
+    \begin{itemize}
+        \item $G$: a finite group of order $g$.
+        \item $\Gamma^1$: the identity representation of $G$.
+        \item $\Gamma^p$, $p\neq 1$: an arbitrary irreducible representation of $G$ that is not equivalent to the identity representation.
+        \item $\chi^p(T)$: the character of an element $T$ of $G$ in $\Gamma^p$.
+    \end{itemize}
+    The sum of the characters of all the elements of a finite group in an irreducible representation except the identity representation is
+    \begin{align}
+        \nonumber\sum_{T\in G}\chi^p(T)=&\sum_{T\in G}\chi^p(T)\cdot 1\\
+        \nonumber=&\sum_{T\in G}\chi^p(T)\chi^1(T)\\
+        \nonumber&(\text{using orthogonality relation for characters})\\
+        \nonumber=&g\delta_{p1}\\
+        =&0.
+    \end{align}
+\end{sol}
+
+\begin{prob}
+    Consider the group $G=\{E,a,b,b^2,b^3,b^4,b^5,ab,ab^2,ab,ab^2,ab^3,ab^4,ab^5\}$ with $a^2=b^6=E$ and $a^{-1}ba=b^{-1}$.
+    \begin{enumerate}
+        \item[(a)] Find all the elements in each class of $G$.
+        \item[(b)] $\Gamma^1$ and $\Gamma^2$ are two representation of $G$. In the representation $\Gamma^1$, $\Gamma^1(a)$ and $\Gamma^1(b)$ are respectively given by
+        \[
+            \Gamma^1(a)=\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right),\quad\Gamma^1(b)=\left(\begin{matrix}
+                \omega&0\\
+                0&\omega^{-1}
+            \end{matrix}\right)
+        \]
+        with $\omega=e^{i2\pi/3}$. In the representation $\Gamma^2$, $\Gamma^2(a)$ and $\Gamma^2(b)$ are respectively given by
+        \[
+            \Gamma^2(a)=\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right),\quad\Gamma^2(b)=\left(\begin{matrix}
+                -1&0\\
+                0&1
+            \end{matrix}\right)
+        \]
+        Find the partial character table of $G$ with entries only for the representation $\Gamma^1$ and $\Gamma^2$.
+        \item[(c)] Are the representation $\Gamma^1$ and $\Gamma^2$ equivalent?
+        \item[(d)] Is the representation $\Gamma^1$ reducible?
+        \item[(e)] Is the representation $\Gamma^2$ reducible?
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] Construct the multiplication table of $G$, as shown in table \ref{5-MT}.
+        \begin{table}[h]
+            \centering
+            \caption{Multiplication table of $G$.}
+            \label{5-MT}
+            \begin{tabular}{c|cccccccccccc}
+             & $E$ & $a$ & $b$ & $b^2$ & $b^3$ & $b^4$ & $b^5$ & $ab$ & $ab^2$ & $ab^3$ & $ab^4$ & $ab^5$ \\ \hline
+            $E$ & $E$ & $a$ & $b$ & $b^2$ & $b^3$ & $b^4$ & $b^5$ & $ab$ & $ab^2$ & $ab^3$ & $ab^4$ & $ab^5$ \\
+            $a$ & $a$ & $E$ & $ab$ & $ab^2$ & $ab^3$ & $ab^4$ & $ab^5$ & $b$ & $b^2$ & $b^3$ & $b^4$ & $b^5$ \\
+            $b$ & $b$ & $ab^5$ & $b^2$ & $b^3$ & $b^4$ & $b^5$ & $E$ & $a$ & $ab$ & $ab^2$ & $ab^3$ & $ab^4$ \\
+            $b^2$ & $b^2$ & $ab^4$ & $b^3$ & $b^4$ & $b^5$ & $E$ & $b$ & $ab^5$ & $a$ & $ab$ & $ab^2$ & $ab^3$ \\
+            $b^3$ & $b^3$ & $ab^3$ & $b^4$ & $b^5$ & $E$ & $b$ & $b^2$ & $ab^4$ & $ab^5$ & $a$ & $ab$ & $ab^2$ \\
+            $b^4$ & $b^4$ & $ab^2$ & $b^5$ & $E$ & $b$ & $b^2$ & $b^3$ & $ab^3$ & $ab^4$ & $ab^5$ & $a$ & $ab$ \\
+            $b^5$ & $b^5$ & $ab$ & $E$ & $b$ & $b^2$ & $b^3$ & $b^4$ & $ab^2$ & $ab^3$ & $ab^4$ & $ab^5$ & $a$ \\
+            $ab$ & $ab$ & $b^5$ & $ab^2$ & $ab^3$ & $ab^4$ & $ab^5$ & $a$ & $E$ & $b$ & $b^2$ & $b^3$ & $b^4$ \\
+            $ab^2$ & $ab^2$ & $b^4$ & $ab^3$ & $ab^4$ & $ab^5$ & $a$ & $ab$ & $b^5$ & $E$ & $b$ & $b^2$ & $b^3$ \\
+            $ab^3$ & $ab^3$ & $b^3$ & $ab^4$ & $ab^5$ & $a$ & $ab$ & $ab^2$ & $b^4$ & $b^5$ & $E$ & $b$ & $b^2$ \\
+            $ab^4$ & $ab^4$ & $b^2$ & $ab^5$ & $a$ & $ab$ & $ab^2$ & $ab^3$ & $b^3$ & $b^4$ & $b^5$ & $E$ & $b$ \\
+            $ab^5$ & $ab^5$ & $b$ & $a$ & $ab$ & $ab^2$ & $ab^3$ & $ab^4$ & $b^2$ & $b^3$ & $b^4$ & $b^5$ & $E$
+            \end{tabular}
+            \end{table}
+            The inverse of every element in $G$ are shown as following:
+            \begin{align}
+                E^{-1}=&E,&a^{-1}=&a,&b^{-1}=&b^5,&(b^2)^{-1}=&b^4,&(b^3)^{-1}=&b^3,&(b^4)^{-1}=&b^2,\\
+                (b^5)^{-1}=&b,&(ab)^{-1}=&ab,&(ab^2)=&ab^2,&(ab^3)^{-1}=&ab^3,&(ab^4)^{-1}=&ab^4,&(ab^5)^{-1}=&ab^5.
+            \end{align}
+            Constructing a class from $a$: For $X=E,a,b^3,ab^3$,
+            \begin{equation}
+                XaX^{-1}=a.
+            \end{equation}
+            For $X=b,b^4,ab^2,ab^5$,
+            \begin{equation}
+                XaX^{-1}=ab^4.
+            \end{equation}
+            For $X=b^2,b^5,ab,ab^4$,
+            \begin{equation}
+                XaX^{-1}=ab^2.
+            \end{equation}
+            The class of $G$ constructed from $a$ is $\{a,ab^2,ab^4\}$.\\
+            Using the similar method, we construct all the classes of $G$:
+            \[
+                \mathcal{C}_1=\{E\},\quad\mathcal{C}_2=\{a,ab^2,ab^4\},\quad\mathcal{C}_3=\{b,b^5\},\quad\mathcal{C}_4=\{b^2,b^4\},\quad\mathcal{C}_5=\{b^3\},\quad\mathcal{C}_6=\{ab,ab^3,ab^5\}.
+            \]
+        \item[(b)] In the representation $\Gamma^1$,
+        \begin{align}
+            \Gamma^1(E)=&\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&\chi^1(E)=&2,\\
+            \Gamma^1(a)=&\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right),&\chi^1(a)=&0,\\
+            \Gamma^1(b)=&\left(\begin{matrix}
+                \omega&0\\
+                0&\omega^{-1}
+            \end{matrix}\right),&\chi^1(b)=&-1,\\
+            \Gamma^1(b^2)=&\Gamma^1(b)^2=\left(\begin{matrix}
+                \omega^2&0\\
+                0&\omega^{-2}
+            \end{matrix}\right),&\chi^1(b^2)=&-1,\\
+            \Gamma^1(b^3)=&\Gamma^1(b)^3=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&\chi^1(b^3)=&2,\\
+            \Gamma^1(b^4)=&\Gamma^1(b)^4=\left(\begin{matrix}
+                \omega&0\\
+                0&\omega^{-1}
+            \end{matrix}\right),&\chi^1(b^4)=&-1,\\
+            \Gamma^1(b^5)=&\Gamma^1(b)^5=\left(\begin{matrix}
+                \omega^2&0\\
+                0&\omega^{-2}
+            \end{matrix}\right),&\chi^1(b^5)=&-1,\\
+            \Gamma^1(ab)=&\Gamma^1(a)\Gamma^1(b)=\left(\begin{matrix}
+                0&\omega^{-1}\\
+                \omega&0
+            \end{matrix}\right),&\chi^1(ab)=&0,\\
+            \Gamma^1(ab^2)=&\Gamma^1(a)\Gamma^1(b)^2=\left(\begin{matrix}
+                0&\omega^{-2}\\
+                \omega^2&0
+            \end{matrix}\right),&\chi^1(ab^2)=&0,\\
+            \Gamma^1(ab^3)=&\Gamma^1(a)\Gamma^1(b)^3=\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right),&\chi^1(ab^3)=&0,\\
+            \Gamma^1(ab^4)=&\Gamma^1(a)\Gamma^1(b)^4=\left(\begin{matrix}
+                0&\omega^{-1}\\
+                \omega&0
+            \end{matrix}\right),&\chi^1(ab^2)=&0,\\
+            \Gamma^1(ab^5)=&\Gamma^1(a)\Gamma^1(b)^5=\left(\begin{matrix}
+                0&\omega^{-2}\\
+                \omega^2&0
+            \end{matrix}\right),&\chi^1(ab^2)=&0.
+        \end{align}
+        In the representation $\Gamma^2$,
+        \begin{align}
+            \Gamma^2(E)=&\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&\chi^2(E)=&2,\\
+            \Gamma^2(a)=&\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right),&\chi^2(a)=&0,\\
+            \Gamma^2(b)=&\left(\begin{matrix}
+                -1&0\\
+                0&1
+            \end{matrix}\right),&\chi^2(b)=&0,\\
+            \Gamma^2(b^2)=&\Gamma^2(b)^2=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&\chi^2(b^2)=&2,\\
+            \Gamma^2(b^3)=&\Gamma^2(b)^3=\left(\begin{matrix}
+                -1&0\\
+                0&1
+            \end{matrix}\right),&\chi^2(b^3)=&0,\\
+            \Gamma^2(b^4)=&\Gamma^2(b)^4=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),&\chi^2(b^4)=&2,\\
+            \Gamma^2(b^5)=&\Gamma^2(b)^5=\left(\begin{matrix}
+                -1&0\\
+                0&1
+            \end{matrix}\right),&\chi^2(b^5)=&0,\\
+            \Gamma^2(ab)=&\Gamma^2(a)\Gamma^2(b)=\left(\begin{matrix}
+                -1&0\\
+                0&-1
+            \end{matrix}\right),&\chi^2(ab)=&-2,\\
+            \Gamma^2(ab^2)=&\Gamma^2(a)\Gamma^2(b)^2=\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right),&\chi^2(ab^2)=&0,\\
+            \Gamma^2(ab^3)=&\Gamma^2(a)\Gamma^2(b)^3=\left(\begin{matrix}
+                -1&0\\
+                0&-1
+            \end{matrix}\right),&\chi^2(ab^3)=&-2,\\
+            \Gamma^2(ab^4)=&\Gamma^2(a)\Gamma^2(b)^4=\left(\begin{matrix}
+                1&0\\
+                0&-1
+            \end{matrix}\right),&\chi^2(ab^2)=&0,\\
+            \Gamma^2(ab^5)=&\Gamma^2(a)\Gamma^2(b)^5=\left(\begin{matrix}
+                -1&0\\
+                0&-1
+            \end{matrix}\right),&\chi^2(ab^2)=&-2.
+        \end{align}
+        The partial character table of $G$ with entries only for the representation $\Gamma^1$ and $\Gamma^2$ is shown in table \ref{5-PCT}.
+        \begin{table}[h]
+            \caption{Partial character table of $G$.}
+            \centering
+            \label{5-PCT}
+            \begin{tabular}{c|cccccc}
+             & $\mathcal{C}_1$ & $\mathcal{C}_2$ & $\mathcal{C}_3$ & $\mathcal{C}_4$ & $\mathcal{C}_5$ & $\mathcal{C}_6$ \\ \hline
+            $\Gamma^1$ & $2$ & $0$ & $-1$ & $-1$ & $2$ & $0$ \\
+            $\Gamma^2$ & $2$ & $0$ & $0$ & $2$ & $0$ & $-2$
+            \end{tabular}
+            \end{table}
+        \item[(c)] As shown above, $\Gamma^2(T)$'s are all diagonal matrices, so $\Gamma$ is a completely reducible representation of $G$. Let's try diagonalizing $\Gamma^1$ and see if it is the same with $\Gamma^2$. The characteristic equation of $\Gamma^1(a)$ is
+        \begin{equation}
+            \det(\Gamma^1(a)-\lambda 1_2)=\left\lvert\begin{matrix}
+                -\lambda&1\\
+                1&-\lambda
+            \end{matrix}\right\rvert=\lambda^2-1=0.
+        \end{equation}
+        Solving the above characteristic equation, we get the two eigenvalues of $\Gamma^1(a)$:
+        \begin{equation}
+            \lambda_1=1,\quad\lambda_2=-1.
+        \end{equation}
+        Suppose the eigenvector is $\left(\begin{matrix}
+            x&y
+        \end{matrix}\right)^T$. For eigenvalue $\lambda_1=1$, we have
+        \begin{equation}
+            \Gamma^1(a)\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right)=\lambda_1\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right)=\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right).
+        \end{equation}
+        Solving the above eigenfunction and normalizing the solution, we get the eigenvector corresponding to $\lambda_1=1$:
+        \begin{equation}
+            \left(\begin{matrix}
+                x_1\\
+                y_1
+            \end{matrix}\right)=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1\\
+                1
+            \end{matrix}\right).
+        \end{equation}
+        For eigenvalue $\lambda_2=-1$, we have
+        \begin{equation}
+            \Gamma^1(a)\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right)=\left(\begin{matrix}
+                0&1\\
+                1&0
+            \end{matrix}\right)\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right)=\lambda_2\left(\begin{matrix}
+                x\\
+                y
+            \end{matrix}\right)=\left(\begin{matrix}
+                -x\\
+                -y
+            \end{matrix}\right).
+        \end{equation}
+        Solving the above eigenfunction and normalizing the solution, we get the eigenvector corresponding to $\lambda_2=-1$:
+        \begin{equation}
+            \left(\begin{matrix}
+                x_2\\
+                y_2
+            \end{matrix}\right)=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1\\
+                -1
+            \end{matrix}\right).
+        \end{equation}
+        We choose the transformation matrices as
+        \begin{equation}
+            S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&1\\
+                1&-1
+            \end{matrix}\right),
+        \end{equation}
+        which is equal to its inverse:
+        \begin{equation}
+            S^{-1}=S=\frac{1}{\sqrt{2}}\left(\begin{matrix}
+                1&1\\
+                1&-1
+            \end{matrix}\right).
+        \end{equation}
+        By making the following transformation
+        \begin{align}
+            \Gamma^{1''}(a)=&S^{-1}\Gamma^1(a)S=\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right),\\
+            \Gamma^{1''}(b)=&S^{-1}\Gamma^1(b)S=\left(\begin{matrix}
+                \omega&0\\
+                0&\omega^{-1}
+            \end{matrix}\right),\\
+            \Gamma^{1''}(ab)=&S^{-1}\Gamma^1(b)S=\left(\begin{matrix}
+                0&\omega^{-1}\\
+                \omega&0
+            \end{matrix}\right)
+        \end{align}
+        we find that $\Gamma^{1''}(b)\neq\Gamma^2(b)$ and $\Gamma^{1}(ab)$ can even not be transformed in the form of a reducible representation, so the representation $\Gamma^1$ and $\Gamma^2$ is \textbf{not} equivalent.
+        \item[(d)] As shown in (c), $\Gamma^1$ is \textbf{not} reducible.
+        \item[(e)] As mentioned in (c), $\Gamma^2$ is a completely reducible representation of $G$.
+    \end{enumerate}
+\end{sol}
+\end{document}

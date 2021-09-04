@@ -1,0 +1,317 @@
+% !TEX program = pdflatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
+% Group Theory Assignment 05
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 05}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, April 8, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+\newcommand{\Tr}{\text{Tr }}
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+\begin{prob}
+    The element of the group $G_1=\{E,a_2,a_3,\cdots,a_{g_1}\}$ commute with the group $G_2=\{E,b_2,b_3,\cdots,b_{g_2}\}$. That is, $a_ib_j=b_ja_i$ for $i=1,2,\cdots,g_1$, and $j=1,2,\cdots,g_2$. Here $a_1=E$ and $b_1=E$. Show that the direct product of $G_1$ and $G_2$, $G_1\otimes G_2=\{a_ib_j;i=1,2,\cdots,g_1,j=1,2,\cdots,g_2\}$, is a group.
+\end{prob}
+\begin{sol}
+    The direct product of $G_1$ and $G_2$, $G_1\otimes G_2=\{a_ib_j;i=1,2,\cdots,g_1,j=1,2,\cdots,g_2\}$, satisfies all the four group axioms:
+    \begin{enumerate}
+        \item \textbf{Closure}: For two arbitrary elements $a_ib_j$ and $a_kb_l$ in $G_1\otimes G_2$, their product is $(a_ib_j)(a_kb_l)=(a_ia_k)(b_jb_l)$. Since $a_i$ and $a_k$ are two elements of group $G_1$, $a_ia_k$ is an element of $G_1$. Since $b_j$ and $b_l$ are two elements of $G_2$, $b_jb_l$ is an element of $G_2$. Since $a_ia_k$ is an element of $G_1$ and $b_jb_l$ is an element of $G_2$, $(a_ib_j)(a_kb_l)=(a_ia_k)(b_jb_l)$ is an elements of $G_1\otimes G_2$.
+        \item \textbf{Associativity}: For any three elements $a_ib_j$, $a_kb_l$, $a_mb_n$ of $G_1\otimes G_2$, using the commutativity of $G_1$ and $G_2$, we have $[(a_ib_j)(a_kb_l)](a_mb_n)=a_ia_ka_mb_jb_lb_n=(a_ib_j)[(a_kb_l)(a_mb_n)]$.
+        \item \textbf{Existence of the identity element}: The identity element of $G_1\otimes G_2$ is $EE$, since $(a_ib_j)(EE)=(a_iE)(b_jE)=a_ib_j=(Ea_i)(Eb_j)=(EE)(a_ib_j)$ for every element $a_ib_j$ in $G_1\otimes G_2$.
+        \item \textbf{Existence of inverse elements}: For each element $a_ib_j$ of $G$, its inverse is $a_i^{-1}b_j^{-1}$. This is because $(a_ib_j)(a_i^{-1}b_j^{-1})=(a_ia_i^{-1})(b_jb_j^{-1})=EE=(a_i^{-1}a_i)(b_j^{-1}b_j)=(a_i^{-1}b_j^{-1})(a_ib_j)$. Since $a_i$ is an element of $G_1$, $a_i^{-1}$ is an element of $G_1$. Since $b_j$ is an element of $G_2$, $b_j^{-1}$ is an element of $G_2$. Since $a_i^{-1}$ is an element of $G_1$ and $b_j$ is an element of $G_2$, $a_i^{-1}b_j^{-1}$ is in $G_1\otimes G_2$.
+    \end{enumerate}
+    Therefore, $G_1\otimes G_2$ is a group.
+\end{sol}
+
+\begin{prob}
+    Show that if two matrices $A$ and $B$ are orthogonal, then their direct product $A\otimes B$ is also orthogonal matrix.
+\end{prob}
+\begin{sol}
+    Suppose that the dimensions of the two matrices $A$ and $B$ are $m\times m$ and $n\times n$, respectively. Since the $A$ and $B$ are orthogonal, we have
+    \begin{align}
+        A^TA=&I_m,\\
+        B^TB=&I_n,
+    \end{align}
+    where $I_m$ and $I_n$ is $m\times m$ and $n\times$ identity matrices, respectively, or
+    \begin{align}
+        (A^TA)_{jk}=&\sum_{l=1}^mA_{lj}A_{lk}=\delta_{jk},\\
+        (AA^T)_{jk}=&\sum_{l=1}^mA_{jl}A_{kl}=\delta_{jk},\\
+        (B^TB)_{st}=&\sum_{r=1}^nB_{rs}B_{rt}=\delta_{st},\\
+        (BB^T)_{st}=&\sum_{r=1}^nB_{sr}B_{tr}=\delta_{st}.
+    \end{align}
+    Now let's check that whether $(A\otimes B)^T(A\otimes B)=(A\otimes B)(A\otimes B)^T=I_{mn}$ holds.
+    \begin{align}
+        \nonumber[(A\otimes B)^T(A\otimes B)]_{js,kt}=&\sum_{l=1}^m\sum_{r=1}^n(A\otimes B)_{lr,js}(A\otimes B)_{lr,kt}\\
+        \nonumber=&\sum_{l=1}^m\sum_{r=1}^n(A_{lj}B_{rs})(A_{lk}B_{rt})\\
+        \nonumber=&\left[\sum_{l=1}^mA_{lj}A_{lk}\right]\left[\sum_{r=1}^nB_{rs}B_{rt}\right]\\
+        =&\delta_{jk}\delta_{st},
+    \end{align}
+    which means
+    \begin{equation}
+        (A\otimes B)^T(A\otimes B)=I_{mn}.
+    \end{equation}
+    Similarly,
+    \begin{align}
+        \nonumber(A\otimes B)(A\otimes B)^T=&\sum_{l=1}^m\sum_{r=1}^n(A\otimes B)_{js,lr}(A\times B)_{kt,lr}\\
+        \nonumber=&\sum_{l=1}^m\sum_{r=1}^n(A_{jl}B_{sr})(A_{kl}B_{tr})\\
+        \nonumber=&\left[\sum_{l=1}^mA_{jl}A_{kl}\right]\left[\sum_{r=1}^nB_{sr}B_{st}\right]\\
+        =&\delta_{jk}\delta_{st},
+    \end{align}
+    which means
+    \begin{equation}
+        (A\otimes B)(A\otimes B)^T=I_{mn}.
+    \end{equation}
+    Since $(A\otimes B)^T(A\otimes B)=(A\otimes B)(A\otimes B)^T=I_{mn}$, $A\otimes B$ is an orthogonal matrix.
+\end{sol}
+
+\begin{prob}
+    The character table of $D_3$ is given by
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|ccc}
+         & $C_1=\{E\}$ & $C_2=\{D,F\}$ & $C_3=\{A,B,C\}$ \\ \hline
+        $\Gamma^1$ & $1$ & $1$ & $1$ \\
+        $\Gamma^2$ & $1$ & $1$ & $-1$ \\
+        $\Gamma^3$ & $2$ & $-1$ & $0$
+        \end{tabular}
+        \end{table}
+        \\Find the character table of $D_3\otimes D_3$.
+\end{prob}
+\begin{sol}
+    The direct product is
+    \begin{align}
+        \nonumber D_3\otimes D_3=&\{(T_1,T_2);T_1,T_2\in D_3\}\\
+        \nonumber=&\{(E,E),(E,D),(E,F),(E,A),(E,B),(E,C),(D,E),(D,D),(D,F),(D,A),(D,B),(D,C),\\
+        &(F,E),(F,D),(F,F),(F,A),(F,B),(F,C),(A,E),(A,D),(A,F),(A,A),(A,B),(A,C),\\
+        &(B,E),(B,D),(B,F),(B,A),(B,B),(B,C),(C,E),(C,D),(C,F),(C,A),(C,B),(C,C)\}.
+    \end{align}
+    First, we construct the classes of $D_3\otimes D_3$. As an instance, we constructing a class from $(D,F)$: \\
+    For $X=(E,E),(E,D),(E,F),(D,E),(D,D),(D,F),(F,E),(F,D),(F,F)$,
+    \begin{equation}
+        X(D,F)X^{-1}=(D,F).
+    \end{equation}
+    For $X=(E,A),(E,B),(E,C),(D,A),(D,B),(D,C),(F,A),(F,B),(F,C)$,
+    \begin{equation}
+        X(D,F)X^{-1}=(D,D).
+    \end{equation}
+    For $X=(A,E),(A,D),(A,F),(B,E),(B,D),(B,F),(C,E),(C,D),(C,F)$,
+    \begin{equation}
+        X(D,F)X^{-1}=(F,D).
+    \end{equation}
+    For $X=(A,A),(A,B),(A,C),(B,A),(B,B),(B,C),(C,A),(C,B),(C,C)$,
+    \begin{equation}
+        X(D,F)X^{-1}=(F,F).
+    \end{equation}
+    The class of $D_3\otimes D_3$ constructed from $(D,F)$ is $\{(D,D),(D,F),(F,D),(F,F)\}$.\\
+    Using the similar method, we can construct all the classes of $D_3\otimes D_3$:
+    \footnotesize
+    \begin{align*}
+        &\{(E,E)\},&&\{(E,D),(E,F)\},&&\{(E,A),(E,B),(E,C)\},\\
+        &\{(D,E),(F,E)\},&&\{(D,D),(D,F),(F,D),(F,F)\},&&\{(D,A),(D,B),(D,C),(F,A),(F,B),(F,C)\},\\
+        &\{(A,E),(B,E),(C,E)\},&&\{(A,D),(A,F),(B,D),(B,F),(C,D),(C,F)\},&&\{(A,A),(A,B),(A,C),(B,A),(B,B),(B,C),(C,A),(C,B),(C,C)\}.
+    \end{align*}
+    \normalsize
+    We find that the classes of $D_3\otimes D_3$ are exactly the direct products of the classes of $D_3$:
+    \begin{align*}
+        &C_1\otimes C_1,&&C_1\otimes C_2,&&C_1\otimes C_3,\\
+        &C_2\otimes C_1,&&C_2\otimes C_2,&&C_2\otimes C_3,\\
+        &C_3\otimes C_1,&&C_3\otimes C_2,&&C_3\otimes C_3.
+    \end{align*}
+    Next, we find the representations of $D_3\otimes D_3$. The representations of the direct product group $D_3\otimes D_3$ are defined to be the direct products of representations of the group $D_3$:
+    \begin{align*}
+        &\Gamma^{11}((T_1,T_2))=\Gamma^1(T_1)\otimes\Gamma^1(T_2),&&\Gamma^{12}((T_1,T_2))=\Gamma^1(T_1)\otimes\Gamma(T_2),&&\Gamma^{13}((T_1,T_2))=\Gamma^1(T_1)\otimes\Gamma^3(T_2),\\
+        &\Gamma^{21}((T_1,T_2))=\Gamma^2(T_1)\otimes\Gamma^1(T_2),&&\Gamma^{22}((T_1,T_2))=\Gamma^2(T_1)\otimes\Gamma^2(T_2),&&\Gamma^{23}((T_1,T_2))=\Gamma^2(T_1)\otimes\Gamma^3(T_2),\\
+        &\Gamma^{31}((T_1,T_2))=\Gamma^3(T_1)\otimes\Gamma^1(T_2),&&\Gamma^{32}((T_1,T_2))=\Gamma^3(T_1)\otimes\Gamma^2(T_2),&&\Gamma^{33}((T_1,T_2))=\Gamma^3(T_1)\otimes\Gamma^3(T_2).
+    \end{align*}
+    Lastly, we construct the character table of $D_3\otimes D_3$. Using that the characters in the direct product representations are equal to the products of the characters in the representations involved in the direct products, we construct the character table of $D_3\otimes D_3$, as shown in table \ref{3-CT}.
+    \begin{table}[h]
+        \centering
+        \caption{The character table of $C_3\otimes C_3$.}
+        \label{3-CT}
+        \begin{tabular}{c|ccccccccc}
+            & $C_1\otimes C_1$ & $C_1\otimes C_2$ & $C_1\otimes C_3$ & $C_2\otimes C_1$ & $C_2\otimes C_2$ & $C_2\otimes C_3$ & $C_3\otimes C_1$ & $C_3\otimes C_2$ & $C_3\otimes C_3$ \\ \hline
+            $\Gamma^{11}$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ \\
+            $\Gamma^{12}$ & $1$ & $1$ & $-1$ & $1$ & $1$ & $-1$ & $1$ & $1$ & $-1$ \\
+            $\Gamma^{13}$ & $2$ & $-1$ & $0$ & $2$ & $-1$ & $0$ & $2$ & $-1$ & $0$ \\
+            $\Gamma^{21}$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $-1$ & $-1$ & $-1$ \\
+            $\Gamma^{22}$ & $1$ & $1$ & $-1$ & $1$ & $1$ & $-1$ & $-1$ & $-1$ & $1$ \\
+            $\Gamma^{23}$ & $2$ & $-1$ & $0$ & $2$ & $-1$ & $0$ & $-2$ & $1$ & $0$ \\
+            $\Gamma^{31}$ & $2$ & $2$ & $2$ & $-1$ & $-1$ & $-1$ & $0$ & $0$ & $0$ \\
+            $\Gamma^{32}$ & $2$ & $2$ & $-2$ & $2$ & $2$ & $-2$ & $-2$ & $-2$ & $2$ \\
+            $\Gamma^{33}$ & $4$ & $-2$ & $0$ & $-2$ & $1$ & $0$ & $0$ & $0$ & $0$
+        \end{tabular}
+    \end{table}
+\end{sol}
+
+\begin{prob}
+    Show that the direct-product representation $\Gamma_1\otimes\Gamma_2$ is an irreducible representation of $G_1\otimes G_2$ if $\Gamma_1$ and $\Gamma_2$ are irreducible representations of $G_1$ and $G_2$ respectively.
+\end{prob}
+\begin{sol}
+    First, let's prove that the direct product representation $\Gamma=\Gamma_1\otimes\Gamma_2$ is a representation of $G_1\otimes G_2$. Under the multiplication operation
+    \begin{align}
+        \nonumber\Gamma((T_1,T_2))\Gamma((T_1',T_2'))=&[\Gamma_1(T_1)\otimes\Gamma_2(T_2)][\Gamma_1(T_1')\otimes\Gamma_2(T_2')]=[\Gamma_1(T_1)\Gamma_1(T_1')]\otimes[\Gamma_2(T_2)\Gamma(T_2')]\\
+        =&\Gamma_1(T_1T_1')\otimes\Gamma_2(T_2T_2')=\Gamma((T_1T_1',T_2T_2'))=\Gamma((T_1,T_2)(T_1',T_2')),
+    \end{align}
+    $\Gamma=\Gamma_1\otimes\Gamma_2$ satisfies all the four group axioms:
+    \begin{enumerate}
+        \item \textbf{Closure}: For two arbitrary elements $(T_1,T_2)$ and $(T_1',T_2')$ in $G_1\otimes G_2$, $\Gamma((T_1,T_2)),\Gamma((T_1',T_2'))\in\Gamma$ and $(T_1,T_2)(T_1',T_2')=(T_1T_1',T_2T_2')\in G_1\otimes G_2$, so $\Gamma((T_1,T_2))\Gamma((T_1',T_2'))=\Gamma((T_1,T_2)(T_1',T_2'))\in \Gamma$, which means that $\Gamma$ possesses the closure property.
+        \item \textbf{Associativity}: For three arbitrary elements $\Gamma((T_1,T_2))$, $\Gamma((T_1',T_2'))$, $\Gamma((T_1'',T_2''))$ in $\Gamma$, we have\\
+        $[\Gamma((T_1,T_2))\Gamma((T_1',T_2'))]\Gamma((T_1'',T_2''))=\Gamma((T_1,T_2)(T_1',T_2'))\Gamma((T_1'',T_2''))=\Gamma((T_1,T_2)(T_1',T_2')(T_1'',T_2''))\\=\Gamma((T_1,T_2))\Gamma((T_1',T_2')(T_1'',T_2''))=\Gamma((T_1,T_2))[\Gamma((T_1',T_2'))\Gamma((T_1'',T_2''))]$.
+        \item \textbf{Existence of the identity element}: The identity element in $\Gamma$ is $\Gamma((E,E)$, since $\Gamma((E,E))\Gamma((T_1,T_2))=\Gamma((E,E)(T_1,T_2))=\Gamma((ET_1,ET_2))=\Gamma((T_1,T_2))$ and $\Gamma((T_1,T_2))\Gamma((E,E))=\Gamma((T_1,T_2)(E,E))=\Gamma((T_1E,T_2E))$.
+        \item \textbf{Existence of inverse elements}: The inverse element of any arbitrary element $\Gamma((T_1,T_2))$ in $\Gamma$ is $\Gamma((T_1^{-1},T_2^{-1}))$, since $\Gamma((T_1,T_2))\Gamma((T_1^{-1},T_2^{-1}))=\Gamma((T_1,T_2)(T_1^{-1},T_2^{-1}))=\Gamma((T_1T_1^{-1},T_2T_2^{-1}))=\Gamma((E,E))$\\
+        and $\Gamma((T_1^{-1},T_2^{-1}))\Gamma((T_1,T_2))=\Gamma((T_1^{-1},T_2^{-1}))=\Gamma((T_1^{-1}T_1,T_2^{-1}T_2))=\Gamma((E,E))$ and $\Gamma((T_1^{-1},T_2^{-1}))\in\Gamma$.
+    \end{enumerate}
+    Therefore, $\Gamma=\Gamma_1\otimes\Gamma_2$ is a group and thus is a representation of $G_1\otimes G_2$
+
+    Next, let's prove that $\Gamma=\Gamma_1\otimes\Gamma_2$ is irreducible. Suppose the characters in representations $\Gamma_1$ and $\Gamma_2$ are $\chi_1(T_1)=\Tr\Gamma_1(T_1)$ and $\chi_2(T_2)=\Tr\Gamma_2(T_2)$ respectively and the order of $G_1$ and $G_2$ are $g_1$ and $g_2$ respectively. The character in representation $\Gamma=\Gamma_1\otimes\Gamma_2$ is
+    \begin{align}
+        \nonumber\chi((T_1,T_2))=&\Tr\Gamma((T_1,T_2))\\
+        \nonumber=&\sum_{js}\Gamma((T_1,T_2))_{js,js}\\
+        \nonumber=&\sum_{js}\Gamma_1(T_1)_{jj}\Gamma_2(T_2)_{ss}\\
+        =&\left(\sum_j\Gamma_1(T_1)_{jj}\right)\left(\sum_s\Gamma_2(T_2)_{ss}\right)=\chi_1(T_1)\chi_2(T_2).
+    \end{align}
+    Since $\Gamma_1$ and $\Gamma_2$ are irreducible, we have
+    \begin{align}
+        \sum_{T_1\in G_1}\abs{\chi_1(T_1)}^2=&g_1,\\
+        \sum_{T_2\in G_2}\abs{\chi_2(T_2)}^2=&g_2.
+    \end{align}
+    The value of $\sum_{(T_1,T_2)\in G_1\otimes G_2}\abs{\chi(T_1,T_2)}^2$ is
+    \begin{equation}
+        \sum_{(T_1,T_2)\in G_1\otimes G_2}\abs{\chi((T_1,T_2))}^2=\left[\sum_{T_1\in G_1}\abs{\chi_1(T_1)}^2\right]\left[\sum_{T_2\in G_2}\abs{\chi_2(T_2)}^2\right]=g_1g_2,
+    \end{equation}
+    which is exactly the order of $\Gamma_1\otimes\Gamma_2$.
+
+    Therefore, the direct-product representation $\Gamma=\Gamma_1\otimes\Gamma$ is an irreducible representation of $\Gamma_1\otimes G_2$.
+\end{sol}
+
+\begin{prob}
+    Rotations in two dimensions can be parameterized by
+    \[
+        R(\varphi)=\left(\begin{matrix}
+            \cos\varphi&-\sin\varphi\\
+            \sin\varphi&\cos\varphi
+        \end{matrix}\right).
+    \]
+    \begin{enumerate}
+        \item[(a)] Show that $R(\varphi_1)R(\varphi_2)=R(\varphi_1+\varphi_2)$.
+        \item[(b)] Show that $R(\varphi)=e^{\varphi a_1}$, where
+        \[
+            a_1=\left(\begin{matrix}
+                0&-1\\
+                1&0
+            \end{matrix}\right).
+        \]
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)]
+        \begin{align}
+            \nonumber R(\varphi_1)R(\varphi_2)=&\left(\begin{matrix}
+                \cos\varphi_1&-\sin\varphi_1\\
+                \sin\varphi_1&\cos\varphi_1
+            \end{matrix}\right)\left(\begin{matrix}
+                \cos\varphi_2&-\sin\varphi_2\\
+                \sin\varphi_2&\cos\varphi_2
+            \end{matrix}\right)\\
+            \nonumber=&\left(\begin{matrix}
+                \cos\varphi_1\cos\varphi_2-\sin\varphi_1\sin\varphi_2&-\cos\varphi_1\sin\varphi_2-\sin\varphi_1\cos\varphi_2\\
+                \sin\varphi_1\cos\varphi_2+\cos\varphi_1\sin\varphi_2&-\sin\varphi_1\sin\varphi_2+\cos\varphi_1\cos\varphi_2
+            \end{matrix}\right)\\
+            =&\left(\begin{matrix}
+                \cos(\varphi_1+\varphi_2)&-\sin(\varphi_1+\varphi_2)\\
+                \sin(\varphi_1+\varphi_2)&\cos(\varphi_1+\varphi_2)
+            \end{matrix}\right)=R(\varphi_1+\varphi_2).
+        \end{align}
+        \item[(b)]
+        \begin{align}
+            \nonumber e^{\varphi a_1}=&\sum_{k=0}^{\infty}\frac{1}{k!}(\varphi a_1)^k\\
+            \nonumber=&\sum_{k=0}^{\infty}\frac{1}{(4k)!}\varphi^{4k}a_1^{4k}+\sum_{k=0}^{\infty}\frac{1}{(4k+1)!}\varphi^{4k+1}a_1^{4k+1}+\sum_{k=0}^{\infty}\frac{1}{(4k+2)!}\varphi^{4k+2}a_1^{4k+2}+\sum_{k=0}^{\infty}\frac{1}{(4k+3)!}\varphi^{4k+3}a_1^{4k+3}\\
+            \nonumber=&\sum_{k=0}^{\infty}\frac{1}{(4k)!}\varphi^{4k}\left(\begin{matrix}
+                1&0\\
+                0&1
+            \end{matrix}\right)+\sum_{k=0}^{\infty}\frac{1}{(4k+1)!}\varphi^{4k+1}\left(\begin{matrix}
+                0&-1\\
+                1&0
+            \end{matrix}\right)+\sum_{k=0}^{\infty}\frac{1}{(4k+2)!}\varphi^{4k+2}\left(\begin{matrix}
+                -1&0\\
+                0&-1
+            \end{matrix}\right)\\
+            \nonumber&+\sum_{k=0}^{\infty}\frac{1}{(4k+3)!}\varphi^{4k+3}\left(\begin{matrix}
+                0&1\\
+                -1&0
+            \end{matrix}\right)\\
+            \nonumber=&\left(\begin{matrix}
+                \sum_{k=0}^{\infty}\frac{1}{(4k)!}\varphi^{4k}-\sum_{k=0}^{\infty}\frac{1}{(4k+2)!}\frac{1}{(4k+2)!}\varphi^{4k+2}&-\sum_{k=0}^{\infty}\frac{1}{(4k+1)!}\varphi^{4k+1}+\sum_{k=0}^{\infty}\frac{1}{(4k+3)!}\varphi^{4k+3}\\
+                \sum_{k=0}^{\infty}\frac{1}{(4k+1)!}\varphi^{4k+1}-\sum_{k=0}^{\infty}\frac{1}{(4k+3)!}\varphi^{4k+3}&\sum_{k=0}^{\infty}\frac{1}{(4k)!}\varphi^{4k}-\sum_{k=0}^{\infty}\frac{1}{(4k+2)!}\frac{1}{(4k+2)!}\varphi^{4k+2}
+            \end{matrix}\right)\\
+            \nonumber=&\left(\begin{matrix}
+                1-\frac{\varphi^2}{2!}+\frac{\varphi^4}{4!}+\cdots&-\frac{x}{1}+\frac{x^3}{3!}-\frac{x^5}{5!}+\cdots\\
+                \frac{x}{1}-\frac{x^3}{3!}+\frac{x^5}{5!}+\cdots&1-\frac{\varphi^2}{2!}+\frac{\varphi^4}{4!}+\cdots
+            \end{matrix}\right)\\
+            =&\left(\begin{matrix}
+                \cos\varphi&-\sin\varphi\\
+                \sin\varphi&\cos\varphi
+            \end{matrix}\right)=R(\varphi).
+        \end{align}
+    \end{enumerate}
+\end{sol}
+\end{document}

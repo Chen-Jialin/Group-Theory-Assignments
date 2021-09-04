@@ -1,0 +1,256 @@
+% !TEX program = pdflatex
+% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
+% Group Theory Assignment 02
+\documentclass[UTF8,10pt,a4paper]{article}
+\usepackage[scheme=plain]{ctex}
+\newcommand{\CourseName}{Group Theory}
+\newcommand{\CourseCode}{PHYS2102}
+\newcommand{\Semester}{Spring, 2020}
+\newcommand{\ProjectName}{Assignment 02}
+\newcommand{\DueTimeType}{Due Time}
+\newcommand{\DueTime}{8:15, March 18, 2020 (Wednesday)}
+\newcommand{\StudentName}{陈稼霖}
+\newcommand{\StudentID}{45875852}
+\usepackage[vmargin=1in,hmargin=.5in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{calc}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\CourseName}
+\fancyhead[C]{\ProjectName}
+\fancyhead[R]{\StudentName}
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+\setlength\headheight{12pt}
+\fancypagestyle{FirstPageStyle}{
+    \fancyhf{}
+    \fancyhead[L]{\CourseName\\
+        \CourseCode\\
+        \Semester}
+    \fancyhead[C]{{\Huge\bfseries\ProjectName}\\
+        \DueTimeType\ : \DueTime}
+    \fancyhead[R]{Name : \makebox[\widthof{\StudentID}][s]{\StudentName}\\
+        Student ID\@ : \StudentID\\
+        Score : \underline{\makebox[\widthof{\StudentID}]{}}}
+    \fancyfoot[R]{\thepage\ / \pageref{LastPage}}
+    \setlength\headheight{36pt}
+}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\allowdisplaybreaks[4]
+\newtheoremstyle{Problem}
+{}
+{}
+{}
+{}
+{\bfseries}
+{.}
+{ }
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)} Score: \underline{\qquad\qquad}}
+\theoremstyle{Problem}
+\newtheorem{prob}{Problem}
+\newtheoremstyle{Solution}
+{}
+{}
+{}
+{}
+{\bfseries}
+{:}
+{ }
+{\thmname{#1}}
+\makeatletter
+\def\@endtheorem{\qed\endtrivlist\@endpefalse}
+\makeatother
+\theoremstyle{Solution}
+\newtheorem*{sol}{Solution}
+% \usepackage{graphicx}
+\begin{document}
+\thispagestyle{FirstPageStyle}
+\begin{prob}[Problem title]
+    Show that the intersection $S$ of two invariant subgroups $S_1$ and $S_2$ of a group $G$ is an invariant subgroup.
+\end{prob}
+\begin{sol}
+    First, we prove that $S$ is a subgroup of $G$. Since $S_1$ and $S_2$ are two subgroups of $G$ and $S$ is the intersection of $S_1$ and $S_2$, $S$ is a subset of $G$. $S$ satisfies all the four group axioms:
+    \begin{enumerate}
+        \item \textbf{Closure}: Since $S$ is the intersection of $S_1$ and $S_2$, if $T$ and $R$ are the elements of $S$, then $T$ and $R$ are elements of both $S_1$ and $S_2$. From the closure of $S_1$ and $S_2$, we have $TR\in S_1$ and $TR\in S_2$, so $TR\in S$.
+        \item \textbf{Associativity}: Since $S$ is a subset of group $G$, the associativity of $S$ is automatically satisfied.
+        \item \textbf{Existence of identity element}: Since $S_1$ and $S_2$ are subgroups, the identity element $E$ is in both $S_1$ and $S_2$. Then $E$ is also in their intersection $S$.
+        \item \textbf{Existence of inverse element}: Since $S$ is the intersection of $S_1$ and $S_2$, each element $T$ of $S$ is in both $S_1$ and $S_2$. Because $S_1$ and $S_2$ are subgroups, the inverse $T^{-1}$ of $T$ is also in both $S_1$ and $S_2$. Then $T^{-1}$ is in $S=S_1\cap S_2$.
+    \end{enumerate}
+    In this way, $S$ is a subgroup of $G$.
+
+    Then we prove that $XTX^{-1}\in S=S_1\cap S_2$ holds for every $T\in S$ and every $X\in G$. Since $S$ is the intersection of $S_1$ and $S_2$, we have $T\in S_1$ and $T\in S_2$ for every $T\in S$. Because $S_1$ and $S_2$ are two invariant subgroups of $G$, we have $XTX^{-1}\in S_1$ and $XTX^{-1}\in S_2$ for every $X$ in $G$. In this way, $XTX^{-1}\in S=S_1\cap S_2$ holds for every $T\in S$ and every $X\in G$.
+
+    Therefore, $S$ is an invariant subgroup of $G$.
+\end{sol}
+
+\begin{prob}
+    The multiplication table of a finite group $G$ is given by
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{ccccccccccccc}
+        \multicolumn{1}{c|}{} & $E$ & $A$ & $B$ & $C$ & $D$ & $F$ & $I$ & $J$ & $K$ & $L$ & $M$ & $N$ \\ \hline
+        \multicolumn{1}{c|}{$E$} & $E$ & $A$ & $B$ & $C$ & $D$ & $F$ & $I$ & $J$ & $K$ & $L$ & $M$ & $N$ \\
+        \multicolumn{1}{c|}{$A$} & $A$ & $E$ & $F$ & $I$ & $J$ & $B$ & $C$ & $D$ & $M$ & $N$ & $K$ & $L$ \\
+        \multicolumn{1}{c|}{$B$} & $B$ & $F$ & $A$ & $K$ & $L$ & $E$ & $M$ & $N$ & $I$ & $J$ & $C$ & $D$ \\
+        \multicolumn{1}{c|}{$C$} & $C$ & $I$ & $L$ & $A$ & $K$ & $N$ & $E$ & $M$ & $J$ & $F$ & $D$ & $B$ \\
+        \multicolumn{1}{c|}{$D$} & $D$ & $J$ & $K$ & $L$ & $A$ & $M$ & $N$ & $E$ & $F$ & $I$ & $B$ & $C$ \\
+        \multicolumn{1}{c|}{$F$} & $F$ & $B$ & $E$ & $M$ & $N$ & $A$ & $K$ & $L$ & $C$ & $D$ & $I$ & $J$ \\
+        \multicolumn{1}{c|}{$I$} & $I$ & $C$ & $N$ & $E$ & $M$ & $L$ & $A$ & $K$ & $D$ & $B$ & $J$ & $F$ \\
+        \multicolumn{1}{c|}{$J$} & $J$ & $D$ & $M$ & $N$ & $E$ & $K$ & $L$ & $A$ & $B$ & $C$ & $F$ & $I$ \\
+        \multicolumn{1}{c|}{$K$} & $K$ & $M$ & $J$ & $F$ & $I$ & $D$ & $B$ & $C$ & $N$ & $E$ & $L$ & $A$ \\
+        \multicolumn{1}{c|}{$L$} & $L$ & $N$ & $I$ & $J$ & $F$ & $C$ & $D$ & $B$ & $E$ & $M$ & $A$ & $K$ \\
+        \multicolumn{1}{c|}{$M$} & $M$ & $K$ & $D$ & $B$ & $C$ & $J$ & $F$ & $I$ & $L$ & $A$ & $N$ & $E$ \\
+        \multicolumn{1}{c|}{$N$} & $N$ & $L$ & $C$ & $D$ & $B$ & $I$ & $J$ & $F$ & $A$ & $K$ & $E$ & $M$
+        \end{tabular}
+        \end{table}
+    \begin{enumerate}
+        \item[(a)] Find the inverse of each element of $G$.
+        \item[(b)] Find the elements in each class of $G$.
+        \item[(c)] Find all invariant subgroups of $G$.
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] The inverse of each element of $G$:
+        \begin{align*}
+            E^{-1}=&E,&A^{-1}=&A,&B^{-1}=&F,\\
+            C^{-1}=&I,&D^{-1}=&J,&F^{-1}=&B,\\
+            I^{-1}=&C,&J^{-1}=&D,&K^{-1}=&L,\\
+            L^{-1}=&K,&M^{-1}=&N,&N^{-1}=&M.
+        \end{align*}
+        \item[(b)] Constructing a class from $A$: for $X=E,A,B,C,D,F,I,J,K,L,M,N$,
+        \begin{equation}
+            XAX^{-1}=A
+        \end{equation}
+        The class of $G$ constructed from $A$ is $\{A\}$.\\
+        Using the similar method, we construct all the classes of $G$:
+        \[
+            \{E\},\quad\{A\},\quad\{B,C,D\},\quad\{F,I,J\},\quad\{K,L\},\quad\{M,N\}.
+        \]
+        \item[(c)] A subgroup of $G$ is an invariant subgroup if and only if it consist entirely of complete classes of $G$. The subgroups of $G$ are shown in table \ref{1-G-subgroup}.
+        \begin{table}[h]
+            \centering
+            \caption{The subgroups of $G$.}
+            \label{1-G-subgroup}
+            \begin{tabular}{c|l}
+            order & Subgroup(s) \\ \hline
+            $1$ & $\{E\}$ \\
+            $2$ & $\{E,A\}$ \\
+            $3$ & $\{E,M,N\}$ \\
+            $4$ & $\{E,A,B,C,D\}$, $\{E,A,C,I\}$, $\{E,A,D,J\}$ \\
+            $6$ & $\{E,A,K,L,M,N\}$ \\
+            $12$ & $G$
+            \end{tabular}
+            \end{table}
+            \\The invariant subgroups of $G$ are
+            \[
+                \{E\},\quad\{E,A\},\quad\{E,M,N\},\quad\{E,A,B,C,D\},\quad\{E,A,K,L,M,N\},\quad G
+            \]
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    Consider the group $D_3$.
+    \begin{enumerate}
+        \item[(a)] List all the classes of $D_3$.
+        \item[(b)] Find the right and left cosets of the subgroup $S=\{E,A\}$ of $D_3$.
+    \end{enumerate}
+\end{prob}
+\begin{sol}
+    \begin{enumerate}
+        \item[(a)] The group $D_3$ is
+        \begin{equation}
+            D_3=\{E,D,F,A,B,C\},
+        \end{equation}
+        where $E$ is the identity element, $D$ is the rotation in the plane about the center of the equilateral triangle through $2\pi/3$, $F$ is the rotation in the plane about the center of the triangle through $4\pi/3$, and $A$, $B$, $C$ are the rotations about the three axis of symmetry of the triangle. The multiplication table of $D_3$ is shown in table .
+        \begin{table}[h]
+            \centering
+            \caption{The multiplication table of $D_3$.}
+            \label{3-D3-MT}
+            \begin{tabular}{c|llllll}
+             & $E$ & $D$ & $F$ & $A$ & $B$ & $C$ \\ \hline
+            $E$ & $E$ & $D$ & $F$ & $A$ & $B$ & $C$ \\
+            $D$ & $D$ & $F$ & $E$ & $B$ & $C$ & $A$ \\
+            $F$ & $F$ & $E$ & $D$ & $C$ & $A$ & $B$ \\
+            $A$ & $A$ & $C$ & $B$ & $E$ & $F$ & $D$ \\
+            $B$ & $B$ & $A$ & $C$ & $D$ & $E$ & $F$ \\
+            $C$ & $C$ & $B$ & $A$ & $F$ & $D$ & $E$
+            \end{tabular}
+            \end{table}
+        The inverse of each element of $D_3$ is
+        \begin{align*}
+            E^{-1}=&E,&D^{-1}=&F,&F^{-1}=&D,\\
+            A^{-1}=&A,&B^{-1}=&B,&C^{-1}=&C.
+        \end{align*}
+        Constructing a class from $D$: for $X=E,D,F$,
+        \begin{equation}
+            X^{-1}DX=D.
+        \end{equation}
+        For $X=A,B,C$,
+        \begin{equation}
+            X^{-1}DX=F.
+        \end{equation}
+        The class of $D_3$ constructed form $D$ is $\{D,F\}$.\\
+        Using the similar method, we construct all the classes of $D_3$:
+        \begin{equation}
+            \{E\},\quad\{D,F\},\quad\{A,B,C\}.
+        \end{equation}
+        \item[(b)] The right cosets of the subgroup $S=\{E,A\}$ of $D_3$ is
+        \begin{align*}
+            SE=&SA=\{E,A\},\\
+            SD=&SC=\{D,C\},\\
+            SF=&SB=\{F,B\}.
+        \end{align*}
+        The left cosets of the subgroup $S$ is
+        \begin{align*}
+            ES=&AS=\{E,A\},\\
+            DS=&BS=\{D,B\},\\
+            FS=&CS=\{F,C\}.
+        \end{align*}
+    \end{enumerate}
+\end{sol}
+
+\begin{prob}
+    For the group $D_3$ and its invariant subgroup $S=\{E,D,F\}$, find the factor group $D_3/S$. Consider the multiplication table for the factor group.
+\end{prob}
+\begin{sol}
+    The right coset of the invariant subgroup $S=\{E,D,F\}$ of $D_3$ is
+    \begin{align*}
+        SE=&SD=SF=\{E,D,F\},\\
+        SA=&SB=SC=\{A,B,C\}.
+    \end{align*}
+    The factor group $D_3/S$ is $\{SE,SA\}$.
+    Under the multiplication operation of $ST_1\cdot ST_2=S(T_1T_2)$, the multiplication table of the factor group is shown in table \ref{4-D3/S-MT}.
+    \begin{table}[h]
+        \centering
+        \caption{The multiplication table of $D_3/S$.}
+        \label{4-D3/S-MT}
+        \begin{tabular}{l|ll}
+         & $SE$ & $SA$ \\ \hline
+        $SE$ & $SE$ & $SA$ \\
+        $SA$ & $SA$ & $SA$
+        \end{tabular}
+        \end{table}
+\end{sol}
+
+\begin{prob}
+    Consider $C_6=\{E,a,a^2,a^3,a^4,a^5\}$ and its two subgroups $S_1=\{E,a^3\}$ and $S_2=\{E,a^2,a^4\}$. Show that $C_6=S_1\otimes S_2$.
+\end{prob}
+\begin{sol}
+    The two subgroups $S_1$ and $S_2$ satisfy the following three conditions:
+    \begin{enumerate}
+        \item The elements of $S_1$ commute with the elements of $S_2$, $S^mS^n=S^{m+n}=S^{n+m}=S^nS^m$.
+        \item $S_1$ and $S_2$ have only the identity element $E$ in common.
+        \item Every element of $G'$ can be written as a product of an element of $S_1$ with an element of $S_2$,
+        \begin{align*}
+            E=&EE,\\
+            a=&a^3a^4,\\
+            a^2=&Ea^2,\\
+            a^3=&a^3E,\\
+            a^4=&Ea^4,\\
+            a^5=&a^3a^2.
+        \end{align*}
+    \end{enumerate}
+    Therefore, $C_6\cong S_1\times S_2$.
+\end{sol}
+\end{document}
